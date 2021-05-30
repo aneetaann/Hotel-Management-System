@@ -33,16 +33,20 @@ mongoose.connect(
 bookings.post("/booking", (req, res) => {
 	var newBooking = {
 		_id: new mongoose.Types.ObjectId(),
-		name: req.body.name,
-		jobprofile: req.body.jobprofile,
+		guestname: req.body.guestname,
 		email: req.body.email,
         phone: req.body.phone,
         age: req.body.age,
 		gender: req.body.gender,
-		address: req.body.address
+		address: req.body.address,
+		room: req.body.room,
+		checkin: req.body.checkin,
+		checkout: req.body.checkout,
+		paymentmode: req.body.paymentmode,
+		totalamount: req.body.totalamount
 	};
 	// created new bookings with the attribute mentioned above
-	var booking = new Employee(newBooking);
+	var booking = new Booking(newBooking);
 	//save bookings
 	booking
 		.save()

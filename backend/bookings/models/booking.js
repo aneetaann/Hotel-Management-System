@@ -2,14 +2,10 @@ const mongoose = require("mongoose");
 
 mongoose.model("Booking", {
     _id: mongoose.Schema.Types.ObjectId,
-	name: {
+	guestname: {
 		type: String,
 		required: true,
 	},
-    jobprofile:{
-        type: String,
-        required: true
-    },
 	email: {
 		type: String,
 		required: true,
@@ -30,6 +26,26 @@ mongoose.model("Booking", {
 	},
     address: {
         type: String,
+        required: true
+    },
+    room: {
+        type: String,
+        required: true
+    },
+    checkin: {
+        type: Date,
+        required: true
+    },
+    checkout: {
+        type: Date,
+        required: true
+    },
+    paymentmode: {
+        type: String,
+        required: true
+    },
+    totalamount: {
+        type: Number,
         required: true
     },
     updatedOn: {type: Date, default: Date.now()}
