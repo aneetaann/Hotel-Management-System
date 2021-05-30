@@ -4,11 +4,11 @@ mongoose.model("Room", {
     _id: mongoose.Schema.Types.ObjectId,
 	roomnumber: {
 		type: Number,
-		require: true,
+		required: true,
 	},
 	floor: {
 		type: Number,
-		require: true,
+		required: true,
 	},
     type: {
         type: String,
@@ -20,7 +20,7 @@ mongoose.model("Room", {
     },
 	price: {
 		type: Number,
-		require: true,
+		required: true,
 	},
     updatedOn: {type: Date, default: Date.now()}
 });
