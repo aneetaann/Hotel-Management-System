@@ -36,6 +36,8 @@ rooms.post("/room", (req, res) => {
 		roomnumber: req.body.roomnumber,
 		floor: req.body.floor,
 		type: req.body.type,
+		beds: req.body.beds,
+		bathrooms: req.body.bathrooms,
         availability: req.body.availability,
         price: req.body.price
 	};

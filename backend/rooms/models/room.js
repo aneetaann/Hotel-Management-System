@@ -14,6 +14,14 @@ mongoose.model("Room", {
         type: String,
         required: true
     },
+	beds: {
+		type: Number,
+		required: true
+	},
+	bathrooms: {
+		type: Number,
+		required: true
+	},
     availability: {
         type: String,
         required: true
