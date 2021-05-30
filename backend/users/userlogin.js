@@ -1,27 +1,62 @@
-const express = require('express'),
-     http = require('http');
-const morgan = require('morgan');
-const hostname = 'localhost';
-const port = 3000;
-const adminRouter = require('./routes/adminRouter');
-const managerRouter = require('./routes/managerRouter');
-const receptionistRouter = require('./routes/receptionistRouter');
+const express = require("express");
+const userlogin = express();
+const morgan = require("morgan");
+const mongoose = require("mongoose");
+require("dotenv/config");
 
-const app = express();
+const userRoutes = require('./routes/admin-api');
+const managerRoutes = require("./routes/manager-api");
+const receptionistRoutes = require("./routes/receptionist-api");
 
-app.use(express.json());
-app.use(morgan('dev'));
+//connecting mongodb with nodejs using mongoose. should be declared before listening command
+mongoose.connect(
+  process.env.DB_CONNECTION_STRING,
+{useUnifiedTopology: true, useNewUrlParser: true},//{useMongoClient: true},
+(req, res)=>{
+  console.log("Connected to the Database");
+}
+);
+//mongoose.Promise = global.Promise;
 
-//app.use(express.static(__dirname + '/public'));
-
-app.use('/admin', adminRouter);
-
-app.use('/manager', managerRouter);
-
-app.use('/receptionist', receptionistRouter);
-
-const server = http.createServer(app);
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+userlogin.listen(3000, ()=>{
+  console.log("Listening to port 3000");
 });
+
+userlogin.use(morgan("dev"));
+userlogin.use(express.urlencoded({ extended: false }));
+userlogin.use(express.json());
+
+userlogin.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+    return res.status(200).json({});
+  }
+  next();
+});
+
+// Routes which should handle requests
+userlogin.use("/user", userRoutes);
+userlogin.use("/manager", managerRoutes);
+userlogin.use("/receptionist", receptionistRoutes);
+
+userlogin.use((req, res, next) => {
+  const error = new Error("Not found");
+  error.status = 404;
+  next(error);
+});
+
+userlogin.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  res.json({
+    error: {
+      message: error.message
+    }
+  });
+});
+
+module.exports = userlogin;

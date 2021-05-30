@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken");
+/*const jwt = require("jsonwebtoken");
 
 module.exports = function(req, res, next) {
   const token = req.header("token");
@@ -12,4 +12,4 @@ module.exports = function(req, res, next) {
     console.error(e);
     res.status(500).send({ message: "Invalid Token" });
   }
-};
+};*/

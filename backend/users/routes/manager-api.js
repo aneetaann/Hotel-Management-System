@@ -4,10 +4,10 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const User = require('../models/admin')
+const Manager = require('../models/manager')
 
 router.post('/signup', (req, res, next) => {
-    User.find({email: req.body.email})
+    Manager.find({email: req.body.email})
         .exec()
         .then(user => {
             if (user.length >= 1){
@@ -21,7 +21,7 @@ router.post('/signup', (req, res, next) => {
                             error:err
                         });
                     } else {
-                        const user = new User({
+                        const user = new Manager({
                             _id: new mongoose.Types.ObjectId(),
                             email: req.body.email,
                             password: hash
@@ -47,7 +47,7 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-    User.find({email: req.body.email})
+    Manager.find({email: req.body.email})
     .exec()
     .then(user => {
         if (user.length < 1){
@@ -66,7 +66,7 @@ router.post('/login', (req, res, next) => {
                     email: user[0].email,
                     userId: user[0]._id
                 }, 
-                process.env.JWT_KEY_ADMIN,
+                process.env.JWT_KEY_MANAGER,
                 {
                     expiresIn: "1h"
                 }
@@ -90,7 +90,7 @@ router.post('/login', (req, res, next) => {
 });
 
 router.delete('/:userId', (req, res, next) => {
-    User.remove({_id: req.params.userId})
+    Manager.remove({_id: req.params.userId})
     .exec()
     .then(result => {
         res.status(200).json({
