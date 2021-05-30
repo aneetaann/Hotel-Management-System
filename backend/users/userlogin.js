@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 require("dotenv/config");
 
-const userRoutes = require('./routes/admin-api');
+const adminRoutes = require('./routes/admin-api');
 const managerRoutes = require("./routes/manager-api");
 const receptionistRoutes = require("./routes/receptionist-api");
 
@@ -40,7 +40,7 @@ userlogin.use((req, res, next) => {
 });
 
 // Routes which should handle requests
-userlogin.use("/user", userRoutes);
+userlogin.use("/admin", adminRoutes);
 userlogin.use("/manager", managerRoutes);
 userlogin.use("/receptionist", receptionistRoutes);
 
