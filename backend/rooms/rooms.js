@@ -17,7 +17,7 @@ const Room = mongoose.model("Room");
 //connecting mongodb with nodejs using mongoose. should be declared before listening command
 mongoose.connect(
     process.env.DB_CONNECTION_STRING,
-  {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true},//{useMongoClient: true},
+  {useUnifiedTopology: true, useNewUrlParser: true},//{useMongoClient: true},
   (req, res)=>{
     console.log("Connected to the Database");
   }
@@ -32,11 +32,10 @@ rooms.get("/", (req, res, next) => {
 //create rooms
 rooms.post("/room", (req, res) => {
 	var newRoom = {
+		_id: new mongoose.Types.ObjectId(),
 		roomnumber: req.body.roomnumber,
 		floor: req.body.floor,
 		type: req.body.type,
-        beds: req.body.beds,
-        bathrooms: req.body.bathrooms,
         availability: req.body.availability,
         price: req.body.price
 	};
@@ -68,8 +67,8 @@ rooms.get("/room", (req, res) => {
 });
 
 //list room by id
-rooms.get("/room/:id", (req, res) => {
-	Room.findById(req.params.id)
+rooms.get("/room/:roomId", (req, res) => {
+	Room.findById(req.params.roomId)
 		.then((room) => {
 			// show room
 			if (room) {
@@ -86,8 +85,8 @@ rooms.get("/room/:id", (req, res) => {
 });
 
 //delete room
-rooms.delete("/room/:id", (req, res) => {
-	Room.findOneAndRemove(req.params.id)
+rooms.delete("/room/:roomId", (req, res) => {
+	Room.findOneAndRemove(req.params.roomId)
 		.then(() => {
 			res.send("Room removed");
 		})
