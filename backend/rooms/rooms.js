@@ -60,8 +60,6 @@ rooms.post("/room", (req, res) => {
 		roomnumber: req.body.roomnumber,
 		floor: req.body.floor,
 		type: req.body.type,
-		beds: req.body.beds,
-		bathrooms: req.body.bathrooms,
         availability: req.body.availability,
         price: req.body.price
 	};
@@ -81,6 +79,59 @@ rooms.post("/room", (req, res) => {
 	res.send("A new room is created");
 });
 
+/**
+ * @swagger
+ * /room:
+ *   post:
+ *     summary: add new rooms
+ *     description: users can add rooms using CRUD operations
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               roomnumber:
+ *                 type: number
+ *                 description: room number.
+ *                 example: 12
+ *               floor: 
+ *                 type: number
+ *                 description: floor of room
+ *                 example: 1
+ *               type:
+ *                 type: string
+ *                 description: type of room
+ *                 example: basic
+ *               availability:
+ *                 type: string
+ *                 description: if room available
+ *                 example: yes
+ *               price:
+ *                 type: number
+ *                 description: cost of room
+ *                 example: 1000
+ *              
+ *     responses:
+ *       200:
+ *         description: It will create a new room
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                         message:
+ *                          type: strig
+ *                          description: message for successful room creation or else error message
+ *                          example: New Room Created Successfully
+ */
+
 //list all rooms
 rooms.get("/room", (req, res) => {
 	Room.find()
@@ -91,6 +142,46 @@ rooms.get("/room", (req, res) => {
 			throw err;
 		});
 });
+/**
+ * @swagger
+ * /room:
+ *   get:
+ *     summary: Retrieve a list of all rooms
+ *     description: Retrieve a list of rooms from rooms databse. Can be used for bookings.
+ *     responses:
+ *       200:
+ *         description: A list of trains.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       roomnumber:
+ *                         type: number
+ *                         description: The room number.
+ *                         example: 111
+ *                       floor:
+ *                         type: number
+ *                         description: The room's floor location.
+ *                         example: 1
+ *                       type:
+ *                         type: string
+ *                         description: type of room
+ *                         example: basic
+ *                       availability:
+ *                         type: string
+ *                         description: if room is available
+ *                         example: yes
+ *                       price:
+ *                         type: number
+ *                         description: price of room.
+ *                         example: 200
+ */
 
 //list room by id
 rooms.get("/room/:roomId", (req, res) => {
