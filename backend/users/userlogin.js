@@ -2,7 +2,16 @@ const express = require("express");
 const userlogin = express();
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const axios = require("axios");
 require("dotenv/config");
+
+/*const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+userlogin.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+var options = {
+  explorer: true
+};
+*/
 
 const adminRoutes = require('./routes/admin-api');
 const managerRoutes = require("./routes/manager-api");
