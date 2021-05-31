@@ -1,0 +1,12 @@
+input.ng-invalid.ng-touched, select.ng-invalid {
+    border: 2px solid #ff6969;
+}
+
+.help-block {
+    color: #ff6969;
+}
+
+.card{
+    align-items: center;
+    left:400px
+}
