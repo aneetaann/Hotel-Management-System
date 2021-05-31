@@ -1,0 +1,51 @@
+<body>
+    <div class="card text-black bg-light mb-3" style="max-width: 20rem;" id="main">
+<div class="container-fluid">
+    <h2>Registration Form</h2>
+
+    <form #userForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control" 
+            name="name" [(ngModel)]="passengerModel.name">
+        </div>
+        
+        <div class="form-group">
+            <label>Age</label>
+            <input type="number" #age="ngModel" [class.is-invalid]="age.invalid && age.touched" 
+            class="form-control" name="age" [(ngModel)]="passengerModel.age" required>
+        </div>
+        <div class="mb-3">
+            <label>Gender</label>
+            <div class="form-check">
+              <input type="radio" class="form-check-input" name="gender" value="Male" [(ngModel)]="passengerModel.gender" required>
+              <label class="form-check-label">Male</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" class="form-check-input" name="gender" value="Female" [(ngModel)]="passengerModel.gender">
+              <label class="form-check-label">Female</label>
+            </div>
+          </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" required #email="ngModel" [class.is-invalid]="email.invalid && email.touched" 
+            class="form-control" name="email" [(ngModel)]="passengerModel.email" required>
+        <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is Required</small>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" required #password="ngModel" [class.is-invalid]="password.invalid && password.touched" 
+            class="form-control" name="password" [(ngModel)]="passengerModel.email" required>
+            <small class="text-danger" [class.d-none]="password.valid || password.untouched">Please Enter Password</small>
+
+        </div>
+        <div class="form-group">
+            <label>Address</label>
+            <textarea #address rows="4" cols="10" class="form-control" name="address" [(ngModel)]="passengerModel.address"></textarea>
+        </div>
+        <button  [disabled]="userForm.form.invalid" class="btn btn-primary" type="submit">Register</button>
+    </form>
+</div>
+</div>
+</body>
