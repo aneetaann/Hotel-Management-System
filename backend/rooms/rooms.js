@@ -11,7 +11,7 @@ rooms.use(express.json());
 rooms.use(express.urlencoded({ extended: false }));
 rooms.use(cors());
 
-//swagger
+/*swagger
 const swaggerJSDoc = require('swagger-jsdoc');
 
 const swaggerDefinition = {
@@ -25,15 +25,16 @@ const swaggerDefinition = {
 const options = {
   swaggerDefinition,
   // Paths to files containing OpenAPI definitions
-  apis: ['./rooms.js'],
+  apis: ['./routes/*.js'],
 };
 
 const swaggerSpec = swaggerJSDoc(options);
 
 const swaggerUi = require('swagger-ui-express');
 
-rooms.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+rooms.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));*/
 
+//mongoose
 require("./models/room");
 const Room = mongoose.model("Room");
 
