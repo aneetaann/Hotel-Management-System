@@ -1,0 +1,38 @@
+<div class="demo-layout-transparent mdl-layout mdl-js-layout">
+    <header class="mdl-layout__header mdl-layout__header--transparent">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Admin Console</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation -->
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" routerLink="/booking">Bookings</a>
+          <a class="mdl-navigation__link" routerLink="/room">Rooms</a>
+          <a class="mdl-navigation__link" routerLink="/employee">Employees</a>
+          <a class="mdl-navigation__link" routerLink="">Login</a>
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Title</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" routerLink="/booking">Bookings</a>
+          <a class="mdl-navigation__link" routerLink="/room">Rooms</a>
+          <a class="mdl-navigation__link" routerLink="/employee">Employees</a>
+          <a class="mdl-navigation__link" routerLink="">Login</a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+        <router-outlet></router-outlet>
+    </main>
+    <footer class="mdl-mini-footer">
+        <div class="mdl-mini-footer__left-section">
+          <div class="mdl-logo">Admin Console</div>
+          <!-- <ul class="mdl-mini-footer__link-list">
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Privacy & Terms</a></li>
+          </ul> -->
+        </div>
+      </footer>
+  </div>

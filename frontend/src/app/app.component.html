@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">E-Shop</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active"
+          >Home</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/products" routerLinkActive="active"
+          >Products</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/orders" routerLinkActive="active"
+          >Orders</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/covid" routerLinkActive="active"
+          >Covid</a
+        >
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <a class="nav-link" routerLink="/cart" routerLinkActive="active"
+        >Cart <span class="badge badge-primary">{{ numberOfItems }}</span></a
+      >
+      <a
+        class="nav-link"
+        *ngIf="!_userService.loggedIn()"
+        routerLink="/login"
+        routerLinkActive="active"
+        >Login</a
+      >
+      <a
+        class="nav-link"
+        *ngIf="!_userService.loggedIn()"
+        routerLink="/register"
+        routerLinkActive="active"
+        >Register</a
+      >
+      <a
+        class="nav-link"
+        style="cursor: pointer"
+        *ngIf="_userService.loggedIn()"
+        (click)="_userService.logoutUser()"
+        >Logout</a
+      >
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid" style="margin: 0; padding: 0">
+  <router-outlet></router-outlet>
+  <!--router outletis used to display all the comopnent inside this one component
+   Angular defination = >The RouterOutlet is a directive from the router library that
+    is used like a component. It acts as a placeholder that marks the spot in the
+    template where the router should display the components for that outlet.-->
+</div>

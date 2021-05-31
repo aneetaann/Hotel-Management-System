@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="demo-card-square mdl-card mdl-shadow--2dp" [formGroup]="loginForm" *ngIf="!isLoginFlag">
+        <div class="mdl-card__title mdl-card--expand">
+          <h2 class="mdl-card__title-text">Login</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input formControlName="loginEmail" class="mdl-textfield__input" type="email" id="email">
+                <label class="mdl-textfield__label" for="email">Email</label>
+              </div>
+              <span *ngIf="emailIdMissing" class="error">Email id is Required</span>
+              <span *ngIf="emailIdWrong" class="error">Email id should be of type @gmail.com</span>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input formControlName="loginPwd" class="mdl-textfield__input" type="password" id="pwd">
+                <label class="mdl-textfield__label" for="pwd">Password</label>
+              </div>
+              <span *ngIf="passwordMissing" class="error">Password is Required</span>
+              <span *ngIf="PasswordWrong" class="error">Password is wrong</span>
+              <button (click)="login()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                Login
+              </button>
+              <span class="helper-line" (click)="openSignUp()">Sign up</span>
+        </div>
+      </div>
+
+      <div class="demo-card-square mdl-card mdl-shadow--2dp" [formGroup]="signupForm" *ngIf="isLoginFlag">
+        <div class="mdl-card__title mdl-card--expand">
+          <h2 class="mdl-card__title-text ">Sign up</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input formControlName="sgEmail" class="mdl-textfield__input" type="email" id="email">
+                <label class="mdl-textfield__label" for="email">Email</label>
+              </div>
+              <span *ngIf="emailIdMissing" class="error">Email id is Required</span>
+              <span *ngIf="emailIdWrong" class="error">Email id should be of type @gmail.com</span>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input formControlName="sgPwd" class="mdl-textfield__input" type="password" id="pwd">
+                <label class="mdl-textfield__label" for="pwd">Password</label>
+              </div>
+              <span *ngIf="passwordMissing" class="error">Password is Required</span>
+              <span *ngIf="PasswordWrong" class="error">Password is wrong</span>
+              <button (click)="signup()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                Sign up
+              </button>
+              <span class="helper-line" (click)="openLogIn()">Already have an account</span>
+        </div>
+      </div>
+</div>

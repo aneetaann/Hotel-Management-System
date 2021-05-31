@@ -1,0 +1,5 @@
+.sticky {
+  position: fixed;
+  top: 20;
+  width: 15%;
+}
