@@ -11,6 +11,29 @@ employees.use(express.json());
 employees.use(express.urlencoded({ extended: false }));
 employees.use(cors());
 
+/*swagger
+const swaggerJSDoc = require('swagger-jsdoc');
+
+const swaggerDefinition = {
+  openapi: '3.0.0',
+  info: {
+    title: 'Express API for Hotel-Management-System-employees',
+    version: '1.0.0',
+  },
+};
+
+const options = {
+  swaggerDefinition,
+  // Paths to files containing OpenAPI definitions
+  apis: ['./employees.js'],
+};
+
+const swaggerSpec = swaggerJSDoc(options);
+
+const swaggerUi = require('swagger-ui-express');
+
+rooms.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));*/
+
 require("./models/employee");
 const Employee = mongoose.model("Employee");
 
