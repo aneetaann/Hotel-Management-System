@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
     sgEmail: new FormControl('',[Validators.required, Validators.pattern('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+[a-z]{2,4}$')]),
     sgPwd: new FormControl('',Validators.required)
   })
-  constructor(private httpC: HttpClient) { }
+  constructor(private httpC: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     console.log(this.isLoginFlag)
@@ -58,8 +59,19 @@ export class LoginComponent implements OnInit {
       } 
       console.log(bodyem)
       this.httpC.post<any>('http://localhost:3000/admin/login',bodyem).subscribe((x) => {
-        console.log('result',x)
-        alert(x.message)
+        switch(x.message){
+          case 'Auth Successful':{
+            console.log('Succesful');
+            alert("Logged in successfully")
+            this.router.navigate(['/room'])
+            break;
+          }
+          case 'Auth Failed':{
+            console.log('unsuccessuful');
+            alert("logged in Failed")
+            break;
+          }
+        }
       })
     }
   }
@@ -80,8 +92,18 @@ export class LoginComponent implements OnInit {
       } 
       console.log(bodyem)
       this.httpC.post<any>('http://localhost:3000/admin/signup',bodyem).subscribe((x) => {
-        console.log('result',x)
-        alert(x.message)
+        switch(x.message){
+          case 'Mail already exists':{
+            console.log('Unsuccessful');
+            alert("Please use a different email")
+            break;
+          }
+          case 'User created':{
+            console.log('successuful');
+            alert("Sucessfully signed up")
+            break;
+          }
+        }
       })
     }
   }

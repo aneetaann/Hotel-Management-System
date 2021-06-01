@@ -1,4 +1,23 @@
 <div class="container">
-    <div class="rooms"></div>
-    <div class="addRooms"></div>
+    <div class="options">
+        <a  (click)="changeCurrentTab(0)">All Rooms</a>
+        <a (click)="changeCurrentTab(1)">Add Rooms</a>
+        <a (click)="changeCurrentTab(2)">Edit Rooms</a>
+    </div>
+    <div *ngIf="currentTab === 0" class="tabs rooms">
+        <h2>View Rooms</h2>
+        <div *ngFor="let room of allRooms" class="mdl-card">
+            <div class="mdl-card__title">
+            ...
+            </div>
+            <div class="mdl-card__supporting-text">
+            ...
+            </div>
+            <div class="mdl-card__actions">
+            ...
+            </div>
+        </div>
+    </div>
+    <div *ngIf="currentTab === 1" class="tabs addRooms"> Add rooms</div>
+    <div *ngIf="currentTab === 2" class="tabs editRoom"> Edit rooms</div>
 </div>

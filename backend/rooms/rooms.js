@@ -134,9 +134,10 @@ rooms.post("/room", (req, res) => {
 
 //list all rooms
 rooms.get("/room", (req, res) => {
-	Room.find()
+	Room.find({})
 		.then((room) => {
-			res.json(room);
+			// res.json(room);
+			res.send(room)
 		})
 		.catch((err) => {
 			throw err;
