@@ -113,6 +113,23 @@ bookings.get("/booking/:bookingId", (req, res) => {
 		});
 });
 
+//update booking by id
+bookings.put("/booking/:bookingId", (req, res) => {
+	Booking.findByIdAndUpdate({_id:req.params.bookingId},req.body)
+	.then(() => {
+		//to display what booking details are updated along with updated values
+		Booking.findOne({_id:req.params.id}).then((booking)=>{
+		res.status(201).send({
+			message:"Booking updated", booking});
+	})
+		.catch((err) => {
+			if (err) {
+				throw err;
+			}
+		});
+});
+});
+
 //delete bookings
 bookings.delete("/booking/:bookingId", (req, res) => {
 	Booking.findOneAndRemove(req.params.bookingId)

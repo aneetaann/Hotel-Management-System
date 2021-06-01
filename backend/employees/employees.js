@@ -109,6 +109,23 @@ employees.get("/employee/:employeeId", (req, res) => {
 		});
 });
 
+//update employee by id
+employees.put("/employee/:employeeId", (req, res) => {
+	Employee.findByIdAndUpdate({_id:req.params.employeeId},req.body)
+	.then(() => {
+		//to display what room details are updated along with updated values
+		Employee.findOne({_id:req.params.id}).then((employee)=>{
+		res.status(201).send({
+			message:"Employee updated", employee});
+	})
+		.catch((err) => {
+			if (err) {
+				throw err;
+			}
+		});
+});
+});
+
 //delete employee
 employees.delete("/employee/:employeeId", (req, res) => {
 	Employee.findOneAndRemove(req.params.roomId)

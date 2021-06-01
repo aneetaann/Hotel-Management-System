@@ -33,11 +33,11 @@ mongoose.model("Booking", {
         required: true
     },
     checkin: {
-        type: String,
+        type: Date,
         required: true
     },
     checkout: {
-        type: String,
+        type: Date,
         required: true
     },
     paymentmode: {

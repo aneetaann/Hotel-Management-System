@@ -201,6 +201,22 @@ rooms.get("/room/:roomId", (req, res) => {
 		});
 });
 
+//update room by id
+rooms.put("/room/:roomId", (req, res) => {
+	Room.findByIdAndUpdate({_id:req.params.roomId},req.body)
+	.then(() => {
+		//to display what room details are updated along with updated values
+		Room.findOne({_id:req.params.id}).then((room)=>{
+		res.status(201).send({
+			message:"Room updated", room});
+	})
+		.catch((err) => {
+			if (err) {
+				throw err;
+			}
+		});
+});
+});
 //delete room
 rooms.delete("/room/:roomId", (req, res) => {
 	Room.findOneAndRemove(req.params.roomId)
