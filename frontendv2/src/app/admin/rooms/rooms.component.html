@@ -6,18 +6,60 @@
     </div>
     <div *ngIf="currentTab === 0" class="tabs rooms">
         <h2>View Rooms</h2>
-        <div *ngFor="let room of allRooms" class="mdl-card">
-            <div class="mdl-card__title">
-            ...
+        <div *ngFor="let room of allRooms">
+            <div class="mdl-card">
+                <div class="mdl-card__title">
+                <p>Room Number:{{room.roomnumber}}</p>
+                <p>Floor:{{room.floor}}</p>
+                </div>
+                <div class="mdl-card__supporting-text">
+                <p>Type:{{room.type}}</p>
+                <p>Price:{{room.price}}</p>
+                <p>Availability:{{room.availability}}</p>
+                </div>
+                <div class="mdl-card__actions">
+                </div>
             </div>
-            <div class="mdl-card__supporting-text">
-            ...
-            </div>
-            <div class="mdl-card__actions">
-            ...
-            </div>
+            <br>
         </div>
+        
     </div>
-    <div *ngIf="currentTab === 1" class="tabs addRooms"> Add rooms</div>
+    <div *ngIf="currentTab === 1" class="tabs addRooms">
+        <div class="container">
+            <div class="demo-card-square mdl-card mdl-shadow--2dp" [formGroup]="loginForm">
+                <div class="mdl-card__title mdl-card--expand">
+                  <h2 class="mdl-card__title-text">Login</h2>
+                  </div>
+                <div class="mdl-card__supporting-text">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input formControlName="loginEmail" class="mdl-textfield__input" type="text" id="email">
+                        <label class="mdl-textfield__label" for="email">Email11</label>
+                      </div><br>
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input formControlName="loginEmail" class="mdl-textfield__input" type="text" id="email">
+                        <label class="mdl-textfield__label" for="email">Email</label>
+                      </div><br>
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input formControlName="loginEmail" class="mdl-textfield__input" type="text" id="email">
+                        <label class="mdl-textfield__label" for="email">Email</label>
+                      </div><br>
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input formControlName="loginEmail" class="mdl-textfield__input" type="text" id="email">
+                        <label class="mdl-textfield__label" for="email">Email</label>
+                      </div><br>
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input formControlName="loginEmail" class="mdl-textfield__input" type="text" id="email">
+                        <label class="mdl-textfield__label" for="email">Email</label>
+                      </div><br>
+                      <button  class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                        Login
+                      </button>
+                      <span class="helper-line" >Sign up</span>
+                </div>
+              </div>
+    
+        </div>
+        
+    </div>
     <div *ngIf="currentTab === 2" class="tabs editRoom"> Edit rooms</div>
 </div>
