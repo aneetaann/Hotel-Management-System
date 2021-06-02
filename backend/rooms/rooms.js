@@ -69,14 +69,20 @@ rooms.post("/room", (req, res) => {
 	room
 		.save()
 		.then(() => {
+			res.status(200).json({
+				message: 'Room Created'
+			});
 			console.log("New Room created");
 		})
 		.catch((err) => {
 			if (err) {
+				res.status(401).json({
+					message: 'Room Not Created'
+				});
 				console.log(err);
 			}
 		});
-	res.send("A new room is created");
+	// res.send("A new room is created");
 });
 
 /**
@@ -201,15 +207,36 @@ rooms.get("/room/:roomId", (req, res) => {
 		});
 });
 
+//update room by id
+rooms.put("/room/:roomId", (req, res) => {
+	Room.findByIdAndUpdate({_id:req.params.roomId},req.body)
+	.then(() => {
+		//to display what room details are updated along with updated values
+		Room.findOne({_id:req.params.id}).then((room)=>{
+		res.status(201).send({
+			message:"Room updated"});
+	})
+		.catch((err) => {
+			res.status(401).send({
+				message:"Room not updated"});
+		});
+});
+});
+
 //delete room
 rooms.delete("/room/:roomId", (req, res) => {
 	Room.findOneAndRemove(req.params.roomId)
 		.then(() => {
-			res.send("Room removed");
+			res.status(200).json({
+				message: 'Room Deleted'
+			});
 		})
 		.catch((err) => {
 			if (err) {
-				throw err;
+				res.status(401).json({
+					message: 'Room Cannot be deleted'
+				});
+				console.log(err)
 			}
 		});
 });

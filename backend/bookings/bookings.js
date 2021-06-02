@@ -74,14 +74,15 @@ bookings.post("/booking", (req, res) => {
 	booking
 		.save()
 		.then(() => {
-			console.log("New booking created");
+			res.status(201).send({message:"Booking done"});
 		})
 		.catch((err) => {
 			if (err) {
+				res.status(401).send({message:"Booking Not done"});
 				console.log(err);
 			}
 		});
-	res.send("A new booking is created");
+	
 });
 
 //list all bookings
@@ -119,12 +120,13 @@ bookings.put("/booking/:bookingId", (req, res) => {
 	.then(() => {
 		//to display what booking details are updated along with updated values
 		Booking.findOne({_id:req.params.id}).then((booking)=>{
-		res.status(201).send({
-			message:"Booking updated", booking});
+		res.status(201).json({
+			message:"Booking updated"});
 	})
 		.catch((err) => {
 			if (err) {
-				throw err;
+				res.status(401).json({
+					message:"Booking Cannot be updated"});
 			}
 		});
 });
@@ -134,11 +136,16 @@ bookings.put("/booking/:bookingId", (req, res) => {
 bookings.delete("/booking/:bookingId", (req, res) => {
 	Booking.findOneAndRemove(req.params.bookingId)
 		.then(() => {
-			res.send("booking removed");
+			res.status(200).json({
+				message: 'Booking Deleted'
+			});
 		})
 		.catch((err) => {
 			if (err) {
-				throw err;
+				res.status(401).json({
+					message: 'Booking Cannot be deleted'
+				});
+				console.log(err)
 			}
 		});
 });
@@ -146,3 +153,4 @@ bookings.delete("/booking/:bookingId", (req, res) => {
 bookings.listen(6000, () => {
 	console.log("bookings management server running on localhost:6000");
 });
+

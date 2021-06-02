@@ -38,4 +38,24 @@
 .mdl-card{
     width: 100%;
     height: fit-content !important;
+    padding: 15px;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+.mdl-textfield{
+    width: 100%;
+}
+.mdl-card__supporting-text{
+    margin: 0 auto;
+}
+button{
+    margin-right: 5px
+}
+.editTitle{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }

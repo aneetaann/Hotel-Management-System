@@ -116,12 +116,12 @@ employees.put("/employee/:employeeId", (req, res) => {
 		//to display what room details are updated along with updated values
 		Employee.findOne({_id:req.params.id}).then((employee)=>{
 		res.status(201).send({
-			message:"Employee updated", employee});
+			message:"Employee updated"});
 	})
 		.catch((err) => {
-			if (err) {
-				throw err;
-			}
+			res.status(401).send({
+				message:"Employee not updated"
+			});
 		});
 });
 });
@@ -130,11 +130,16 @@ employees.put("/employee/:employeeId", (req, res) => {
 employees.delete("/employee/:employeeId", (req, res) => {
 	Employee.findOneAndRemove(req.params.roomId)
 		.then(() => {
-			res.send("Employee removed");
+			res.status(200).json({
+				message: 'Employee Deleted'
+			});
 		})
 		.catch((err) => {
 			if (err) {
-				throw err;
+				res.status(401).json({
+					message: 'Employee cannot be deleted'
+				});
+				console.log(err)
 			}
 		});
 });

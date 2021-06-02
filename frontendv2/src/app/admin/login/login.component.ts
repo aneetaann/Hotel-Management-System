@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
         "password": this.loginForm.get('loginPwd')?.value
       } 
       console.log(bodyem)
-      this.httpC.post<any>('http://localhost:3000/admin/login',bodyem).subscribe((x) => {
+      this.httpC.post<any>('http://localhost:3001/admin/login',bodyem).subscribe((x) => {
         switch(x.message){
           case 'Auth Successful':{
             console.log('Succesful');
@@ -91,7 +91,7 @@ export class LoginComponent implements OnInit {
         "password": this.loginForm.get('loginPwd')?.value
       } 
       console.log(bodyem)
-      this.httpC.post<any>('http://localhost:3000/admin/signup',bodyem).subscribe((x) => {
+      this.httpC.post<any>('http://localhost:3001/admin/signup',bodyem).subscribe((x) => {
         switch(x.message){
           case 'Mail already exists':{
             console.log('Unsuccessful');
