@@ -1,1 +1,150 @@
-<p>mbooking works!</p>
+<div class="container">
+    <div class="options">
+        <a [ngStyle]="currentTab === 0 ? {'background-color':'rgba(0,0,0,0.4)' , 'color':'white'} : {'background-color':'transparent', 'color':'black'}" (click)="changeCurrentTab(0)">All Bookings</a>
+        <a [ngStyle]="currentTab === 1 ? {'background-color':'rgba(0,0,0,0.4)' , 'color':'white'} : {'background-color':'transparent', 'color':'black'}" (click)="changeCurrentTab(1)">Add Bookings</a>
+        <a [ngStyle]="currentTab === 2 ? {'background-color':'rgba(0,0,0,0.4)' , 'color':'white'} : {'background-color':'transparent', 'color':'black'}" (click)="changeCurrentTab(2)">Edit Bookings</a>
+    </div>
+    <div *ngIf="currentTab === 0" class="tabs rooms">
+        <h2>View Bookings</h2>
+        <mat-accordion>
+          <mat-expansion-panel class="expansionPanel" *ngFor="let room of allBookings" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h3 class="title">Guest Name: {{room.guestname}}</h3>
+              </mat-panel-title>
+              <mat-panel-description>
+                <h3 class="subtitle">Room no: {{room.room}}</h3>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="body">
+              <div class="body-container">
+                <div class="column">
+                  <p><span class="bold">Email:</span> {{room.email}}</p>
+                  <p><span class="bold">Phone Number: </span>{{room.phone}}</p>
+                  <p><span class="bold">Address: </span>{{room.address}}</p>
+                  <p><span class="bold">Age: </span>{{room.age}}</p>
+                  <p><span class="bold">Gender: </span>{{room.gender}}</p>
+                </div>
+                <div class="column">
+                  <p><span class="bold">Check-in Date: </span>{{room.checkin}}</p>
+                  <p><span class="bold">Check-out Date: </span>{{room.checkout}}</p>
+                  <p><span class="bold">Payment Mode: </span>{{room.paymentmode}}</p>
+                  <p><span class="bold">Price: </span>{{room.totalamount}}</p>
+                </div>
+              </div>
+              <div class="buttons">
+                <button (click)="deleteRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                  Delete
+                </button>
+                <button (click)="editRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                  Edit
+                </button>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+    <div *ngIf="currentTab === 1" class="tabs addRooms">
+        <div class="container">
+          <h2>Fill the form</h2>
+            <div class="demo-card-square mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__supporting-text">
+                      <div class="form" [formGroup]="roomForm" >
+                        <mat-form-field >
+                          <mat-label>Name</mat-label>
+                          <input matInput formControlName="guestname">
+                        </mat-form-field>
+                        <mat-form-field >
+                          <mat-label>Phone No</mat-label>
+                          <input matInput formControlName="phoneNo">
+                        </mat-form-field>
+                        <mat-form-field >
+                          <mat-label>Email</mat-label>
+                          <input matInput formControlName="email">
+                        </mat-form-field>
+                        <mat-form-field >
+                          <mat-label>Age</mat-label>
+                          <input matInput formControlName="age">
+                        </mat-form-field>
+                        <mat-form-field >
+                          <mat-label>Gender</mat-label>
+                          <input matInput formControlName="gender">
+                        </mat-form-field>
+                        <mat-form-field >
+                          <mat-label>Address</mat-label>
+                          <input matInput formControlName="address">
+                        </mat-form-field>
+                        <mat-form-field >
+                          <mat-label>Room Details</mat-label>
+                          <input matInput formControlName="room">
+                        </mat-form-field>
+                        <mat-form-field >
+                          <mat-label>Payment Mode</mat-label>
+                          <input matInput formControlName="paymentmode">
+                        </mat-form-field>
+                        <mat-form-field >
+                          <mat-label>Amount</mat-label>
+                          <input matInput formControlName="totalamount">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter a date range</mat-label>
+                            <mat-date-range-input [formGroup]="roomForm" [rangePicker]="picker">
+                              <input matStartDate formControlName="checkin" placeholder="Start date">
+                              <input matEndDate formControlName="checkout" placeholder="End date">
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+                          
+                            <mat-error *ngIf="roomForm.controls.checkin.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                            <mat-error *ngIf="roomForm.controls.checkout.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+                        </mat-form-field>
+
+                        <button (click)="addRoom()" class="button mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                        Add Booking
+                        </button>
+                      </div>
+                </div>
+              </div>
+    
+        </div>
+        
+    </div>
+    <div *ngIf="currentTab === 2" class="tabs editRoom">
+      <div class="mdl-card">
+        <div class="mdl-card__title editTitle">
+          <span> <span class="title"> Guest Name: </span> <span class="regular-text">{{currentBooking.guestname}}</span></span>
+          <span> <span class="title"> Email: </span> <span class="regular-text">{{currentBooking.email}}</span></span>
+        </div>
+        <div class="mdl-card__supporting-text">
+          <div class="form" [formGroup]="editForm" >
+            <mat-form-field >
+              <mat-label>Room Details</mat-label>
+              <input matInput formControlName="room">
+            </mat-form-field>
+            <mat-form-field >
+              <mat-label>Amount</mat-label>
+              <input matInput formControlName="totalamount">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [formGroup]="editForm" [rangePicker]="picker">
+                  <input matStartDate formControlName="checkin" placeholder="Start date">
+                  <input matEndDate formControlName="checkout" placeholder="End date">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              
+                <mat-error *ngIf="editForm.controls.checkin.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                <mat-error *ngIf="editForm.controls.checkout.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="mdl-card__actions buttons">
+          <button (click)="save()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+            Edit
+          </button>
+        </div>
+    </div>
+    </div>
+</div>

@@ -301,7 +301,7 @@ export class BookingComponent implements OnInit {
               break;
         }
         case 'Booking Not done': {
-          alert('room wasnt created')
+          alert('Booking wasnt created')
         }
       }
     })

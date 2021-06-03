@@ -1,0 +1,61 @@
+.container{
+    /* height: 100vh; */
+    width: 1200px;
+    margin: 0 auto;
+}
+.options{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    padding: 15px;
+    font-weight: bold;
+    background-color: rgba(0,0,0,0.2);
+}
+.options a{
+    color: black;
+    cursor: pointer;
+    padding: 15px;
+}
+.options a:hover{
+    color: white !important;
+    background: rgba(0,0,0,0.4);
+}
+.selected{
+    background: rgba(0,0,0,0.4);
+    color: white;
+}
+.notSelected{
+    background: transparent;
+}
+.tabs{
+    width: 80%;
+    margin: 0 auto;
+    padding: 25px;
+}
+.mdl-card{
+    width: 100%;
+    height: fit-content !important;
+    padding: 15px;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+.mdl-textfield{
+    width: 100%;
+}
+.mdl-card__supporting-text{
+    margin: 0 auto;
+}
+button{
+    margin-right: 5px
+}
+.editTitle{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

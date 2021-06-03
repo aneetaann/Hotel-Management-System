@@ -1,1 +1,24 @@
-<p>mployee works!</p>
+<div class="container">
+    <div class="options">
+        <a  (click)="changeCurrentTab(0)">All Employees</a>
+    </div>
+    <div *ngIf="currentTab === 0" class="tabs rooms">
+        <h2>View Employees</h2>
+        <div *ngFor="let room of allEmployees">
+            <div class="mdl-card">
+                <div class="mdl-card__title">
+                <p>Name:{{room.name}}</p>
+                <p>Job Profile:{{room.jobprofile}}</p>
+                </div>
+                <div class="mdl-card__supporting-text">
+                <p>Email:{{room.email}}</p>
+                <p>Phone:{{room.phone}}</p>
+                <p>Age:{{room.age}}</p>
+                <p>Gender:{{room.gender}}</p>
+                <p>Address:{{room.address}}</p>
+                </div>
+            </div>
+            <br>
+        </div>   
+    </div>
+</div>

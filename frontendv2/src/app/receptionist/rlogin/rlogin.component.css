@@ -1,0 +1,38 @@
+.container{
+    /* height: 100vh; */
+    width: 1200px;
+    margin: 0 auto;
+}
+.demo-card-square.mdl-card {
+    width: 320px;
+    height: 100%;
+    margin: 50px auto;
+  }
+  .demo-card-square > .mdl-card__title {
+    color: #fff;
+    background:  no-repeat #46B6AC;
+    height: 100px  ;
+    /* background-image:  url('../../../assets/images/dad.svg');    */
+  }
+  .header{
+      text-align: center;
+  }
+  .mdl-card__supporting-text{
+      display: flex;
+      flex-direction: column;
+  }
+  .mdl-button{
+      margin: 15px 0 5px 0;
+  }
+  .error{
+      font-size: 15px;
+      color: red;
+      text-align: center;
+  }
+  .helper-line{
+      text-align: center;
+      text-decoration: underline;
+      color: black;
+      cursor: pointer;
+      padding: 15px;
+  }

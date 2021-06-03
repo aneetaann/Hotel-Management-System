@@ -1,1 +1,22 @@
-<p>rrooms works!</p>
+<div class="container">
+    <div class="options">
+        <a  (click)="changeCurrentTab(0)">All Rooms</a>
+    </div>
+    <div *ngIf="currentTab === 0" class="tabs rooms">
+        <h2>View Rooms</h2>
+        <div *ngFor="let room of allRooms">
+            <div class="mdl-card">
+                <div class="mdl-card__title">
+                <p>Room Number:{{room.roomnumber}}</p> <br>
+                <p>Floor:{{room.floor}}</p>
+                </div>
+                <div class="mdl-card__supporting-text">
+                <p>Type:{{room.type}}</p>
+                <p>Price:{{room.price}}</p>
+                <p>Availability:{{room.availability}}</p>
+                </div>
+            </div>
+            <br>
+        </div>   
+    </div>
+</div>
