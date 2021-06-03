@@ -214,11 +214,11 @@ rooms.get("/room/:roomId", (req, res) => {
  *     description: Retrieve a specific room.
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: roomId
  *         required: true
- *         description: Numeric ID of the room
+ *         description: ID of the room
  *         schema:
- *           type: integer
+ *           type: string
  *     responses:
  *       200:
  *         description: A single room
@@ -275,11 +275,11 @@ rooms.put("/room/:roomId", (req, res) => {
  *     description: update room details in database
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: roomId
  *         required: true
- *         description: Numeric ID of the room
+ *         description: ID of the room
  *         schema:
- *           type: integer
+ *           type: string
  *     requestBody:
  *       required: true
  *       content:
@@ -372,11 +372,11 @@ rooms.delete("/room/:roomId", (req, res) => {
  *     description: Delete a specific room.
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: roomId
  *         required: true
- *         description: Numeric ID of the room
+ *         description: ID of the room
  *         schema:
- *           type: integer
+ *           type: string
  *     responses:
  *       200:
  *         description: Deletes a room

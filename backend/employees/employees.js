@@ -11,7 +11,7 @@ employees.use(express.json());
 employees.use(express.urlencoded({ extended: false }));
 employees.use(cors());
 
-/*swagger
+//swagger
 const swaggerJSDoc = require('swagger-jsdoc');
 
 const swaggerDefinition = {
@@ -32,8 +32,9 @@ const swaggerSpec = swaggerJSDoc(options);
 
 const swaggerUi = require('swagger-ui-express');
 
-rooms.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));*/
+employees.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+//mongoose
 require("./models/employee");
 const Employee = mongoose.model("Employee");
 
@@ -79,6 +80,66 @@ employees.post("/employee", (req, res) => {
 		});
 	res.send("A new employee is created");
 });
+/**
+ * @swagger
+ * /employee:
+ *   post:
+ *     summary: Add new employees
+ *     description: Users can add employees using CRUD operations
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: employee name
+ *                 example: Akash
+ *               jobprofile: 
+ *                 type: string
+ *                 description: job profile of employee
+ *                 example: receptionist
+ *               email:
+ *                 type: string
+ *                 description: email id of employee
+ *                 example: abc@gmail.com
+ *               phone:
+ *                 type: number
+ *                 description: phone number of employee
+ *                 example: 9898989898
+ *               age:
+ *                 type: number
+ *                 description: age
+ *                 example: 27
+ *               gender:
+ *                 type: string
+ *                 description: gender of employee
+ *                 example: male
+ *               address:
+ *                 type: string
+ *                 description: address of employee
+ *                 example: Mumbai, Maharashtra, India
+ *              
+ *     responses:
+ *       200:
+ *         description: Adds a new employee
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                         message:
+ *                          type: strig
+ *                          description: message for successful employee addition or else error message
+ *                          example: New Employee Added Successfully
+ */
 
 //list all employees
 employees.get("/employee", (req, res) => {
@@ -90,6 +151,54 @@ employees.get("/employee", (req, res) => {
 			throw err;
 		});
 });
+/**
+ * @swagger
+ * /employee:
+ *   get:
+ *     summary: View all employees
+ *     description: Retrieve all employees from database
+ *     responses:
+ *       200:
+ *         description: A list of employees
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: employee name
+ *                 example: Akash
+ *               jobprofile: 
+ *                 type: string
+ *                 description: job profile of employee
+ *                 example: receptionist
+ *               email:
+ *                 type: string
+ *                 description: email id of employee
+ *                 example: abc@gmail.com
+ *               phone:
+ *                 type: number
+ *                 description: phone number of employee
+ *                 example: 9898989898
+ *               age:
+ *                 type: number
+ *                 description: age
+ *                 example: 27
+ *               gender:
+ *                 type: string
+ *                 description: gender of employee
+ *                 example: male
+ *               address:
+ *                 type: string
+ *                 description: address of employee
+ *                 example: Mumbai, Maharashtra, India
+ */
 
 //list employee by id
 employees.get("/employee/:employeeId", (req, res) => {
@@ -108,6 +217,56 @@ employees.get("/employee/:employeeId", (req, res) => {
 			}
 		});
 });
+/**
+ * @swagger
+ * /employee/:employeeId:
+ *   get:
+ *     summary: View a specific employee with the help of employee id.
+ *     description: Retrieve a specific employee
+ *     parameters:
+ *       - in: path
+ *         name: employeeId
+ *         required: true
+ *         description: ID of the employee
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: A single employee
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: employee name
+ *                 example: Akash
+ *               jobprofile: 
+ *                 type: string
+ *                 description: job profile of employee
+ *                 example: receptionist
+ *               email:
+ *                 type: string
+ *                 description: email id of employee
+ *                 example: abc@gmail.com
+ *               phone:
+ *                 type: number
+ *                 description: phone number of employee
+ *                 example: 9898989898
+ *               age:
+ *                 type: number
+ *                 description: age
+ *                 example: 27
+ *               gender:
+ *                 type: string
+ *                 description: gender of employee
+ *                 example: male
+ *               address:
+ *                 type: string
+ *                 description: address of employee
+ *                 example: Mumbai, Maharashtra, India
+ */
 
 //update employee by id
 employees.put("/employee/:employeeId", (req, res) => {
@@ -125,6 +284,101 @@ employees.put("/employee/:employeeId", (req, res) => {
 		});
 });
 });
+/**
+ * @swagger
+ * /employee/:employeeId:
+ *   put:
+ *     summary: Update employee details of a specific employee
+ *     description: update employee details in database
+ *     parameters:
+ *       - in: path
+ *         name: employeeId
+ *         required: true
+ *         description: ID of the employee
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: employee name
+ *                 example: Akash
+ *               jobprofile: 
+ *                 type: string
+ *                 description: job profile of employee
+ *                 example: receptionist
+ *               email:
+ *                 type: string
+ *                 description: email id of employee
+ *                 example: abc@gmail.com
+ *               phone:
+ *                 type: number
+ *                 description: phone number of employee
+ *                 example: 9898989898
+ *               age:
+ *                 type: number
+ *                 description: age
+ *                 example: 27
+ *               gender:
+ *                 type: string
+ *                 description: gender of employee
+ *                 example: male
+ *               address:
+ *                 type: string
+ *                 description: address of employee
+ *                 example: Mumbai, Maharashtra, India
+ *              
+ *     responses:
+ *       201:
+ *         description: It will update employee along with required paramaters.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       message:
+ *                         type: string
+ *                         description: information if updated
+ *                         example: Employee details have been updated
+ *                       name:
+ *                         type: string
+ *                         description: Employee name
+ *                         example: Akash
+ *                       jobprofile:
+ *                         type: string
+ *                         description: Job Profile
+ *                         example: receptionist
+ *                       email:
+ *                         type: string
+ *                         description: email
+ *                         example: abc@gmail.com
+ *                       phone:
+ *                         type: number
+ *                         description: contact
+ *                         example: 9797979797
+ *                       age:
+ *                         type: number
+ *                         description: age
+ *                         example: 26
+ *                       gender:
+ *                         type: string
+ *                         description: gender
+ *                         example: male
+ *                       address:
+ *                         type: string
+ *                         description: address
+ *                         example: Mumbai
+ */
 
 //delete employee
 employees.delete("/employee/:employeeId", (req, res) => {
@@ -143,7 +397,37 @@ employees.delete("/employee/:employeeId", (req, res) => {
 			}
 		});
 });
-
+/**
+ * @swagger
+ * /employee/:employeeId:
+ *   delete:
+ *     summary: Delete a specific employee with the help of employee id.
+ *     description: Delete a specific employee
+ *     parameters:
+ *       - in: path
+ *         name: employeeId
+ *         required: true
+ *         description: ID of the employee
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Deletes an employee
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                         message:
+ *                          type: string
+ *                          description: message for successful employee removal or else error message
+ *                          example: Employee Deleted Successfully
+ */
 employees.listen(5000, () => {
 	console.log("Employee management server running on localhost:5000");
 });
