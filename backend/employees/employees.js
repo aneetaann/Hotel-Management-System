@@ -71,14 +71,20 @@ employees.post("/employee", (req, res) => {
 	employee
 		.save()
 		.then(() => {
+			res.status(200).json({
+				message: 'Employee Created'
+			});
 			console.log("New Employee created");
 		})
 		.catch((err) => {
 			if (err) {
+				res.status(401).json({
+					message: 'Employee Not Created'
+				});
 				console.log(err);
 			}
 		});
-	res.send("A new employee is created");
+	//res.send("A new employee is created");
 });
 /**
  * @swagger
