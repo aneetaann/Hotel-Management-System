@@ -17,7 +17,7 @@ const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerDefinition = {
   openapi: '3.0.0',
   info: {
-    title: 'Express API for Hotel-Management-System-employees',
+    title: 'Express API for Hotel-Management-System-Employees',
     version: '1.0.0',
   },
 };
