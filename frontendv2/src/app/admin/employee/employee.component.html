@@ -1,35 +1,43 @@
 <div class="container">
     <div class="options">
-        <a  (click)="changeCurrentTab(0)">All Employees</a>
-        <a (click)="changeCurrentTab(1)">Add Employee</a>
-        <a (click)="changeCurrentTab(2)">Edit Employee</a>
+        <a  [ngStyle]="currentTab === 0 ? {'background-color':'rgba(0,0,0,0.4)' , 'color':'white'} : {'background-color':'transparent', 'color':'black'}" (click)="changeCurrentTab(0)">All Employees</a>
+        <a [ngStyle]="currentTab === 1 ? {'background-color':'rgba(0,0,0,0.4)' , 'color':'white'} : {'background-color':'transparent', 'color':'black'}" (click)="changeCurrentTab(1)">Add Employee</a>
+        <a [ngStyle]="currentTab === 2 ? {'background-color':'rgba(0,0,0,0.4)' , 'color':'white'} : {'background-color':'transparent', 'color':'black'}" (click)="changeCurrentTab(2)">Edit Employee</a>
     </div>
     <div *ngIf="currentTab === 0" class="tabs rooms">
         <h2>View Employees</h2>
-        <div *ngFor="let room of allEmployees">
-            <div class="mdl-card">
-                <div class="mdl-card__title">
-                <p>Name:{{room.name}}</p>
-                <p>Job Profile:{{room.jobprofile}}</p>
+        <mat-accordion>
+          <mat-expansion-panel class="expansionPanel" *ngFor="let room of allEmployees" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h3 class="title">Name: {{room.name}}</h3>
+              </mat-panel-title>
+              <mat-panel-description>
+                <h3 class="subtitle">Job Profile: {{room.jobprofile}}</h3>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="body">
+              <div class="body-container">
+                <div class="column">
+                  <p><span class="bold">Email:</span> {{room.email}}</p>
+                  <p><span class="bold">Phone </span>{{room.phone}}</p>
+                  <p><span class="bold">Age: </span>{{room.age}}</p>
+                  <p><span class="bold">Gender: </span>{{room.gender}}</p>
+                  <p><span class="bold">Address: </span>{{room.address}}</p>
                 </div>
-                <div class="mdl-card__supporting-text">
-                <p>Email:{{room.email}}</p>
-                <p>Phone:{{room.phone}}</p>
-                <p>Age:{{room.age}}</p>
-                <p>Gender:{{room.gender}}</p>
-                <p>Address:{{room.address}}</p>
-                </div>
-                <div class="mdl-card__actions">
-                  <button (click)="deleteRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
-                    Delete
-                  </button>
-                  <button (click)="editRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
-                    Edit
-                  </button>
-                </div>
+              </div>
+              <div class="buttons">
+                <button (click)="deleteRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                  Delete
+                </button>
+                <button (click)="editRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                  Edit
+                </button>
+              </div>
             </div>
-            <br>
-        </div>   
+          </mat-expansion-panel>
+        </mat-accordion>
+          
     </div>
     
     <div *ngIf="currentTab === 1" class="tabs addRooms">
@@ -40,34 +48,34 @@
                   </div>
                 <div class="mdl-card__supporting-text">
                       <div class="form" [formGroup]="roomForm" >
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                          <input formControlName="name" class="mdl-textfield__input" type="text" id="name">
-                          <label class="mdl-textfield__label" for="name">Name</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                          <input formControlName="jobprofile" class="mdl-textfield__input" type="text" id="jobprofile">
-                          <label class="mdl-textfield__label" for="jobprofile">Job Profile</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                          <input formControlName="email" class="mdl-textfield__input" type="text" id="email">
-                          <label class="mdl-textfield__label" for="email">Email</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                          <input formControlName="phone" class="mdl-textfield__input" type="text" id="phone">
-                          <label class="mdl-textfield__label" for="phone">Phone</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                          <input formControlName="age" class="mdl-textfield__input" type="text" id="age">
-                          <label class="mdl-textfield__label" for="age">Age</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input formControlName="gender" class="mdl-textfield__input" type="text" id="gender">
-                            <label class="mdl-textfield__label" for="gender">Gender</label>
-                          </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input formControlName="address" class="mdl-textfield__input" type="text" id="address">
-                            <label class="mdl-textfield__label" for="address">Address</label>
-                        </div>
+                        <mat-form-field >
+                          <mat-label>Name</mat-label>
+                          <input matInput formControlName="name">
+                        </mat-form-field>
+                        <mat-form-field >
+                          <mat-label>Job Profile</mat-label>
+                          <input matInput formControlName="jobprofile">
+                        </mat-form-field>
+                        <mat-form-field >
+                          <mat-label>Email</mat-label>
+                          <input matInput formControlName="email">
+                        </mat-form-field>
+                        <mat-form-field >
+                          <mat-label>Phone</mat-label>
+                          <input matInput formControlName="phone">
+                        </mat-form-field>
+                        <mat-form-field >
+                          <mat-label>Age</mat-label>
+                          <input matInput formControlName="age">
+                        </mat-form-field>
+                        <mat-form-field >
+                          <mat-label>Gender</mat-label>
+                          <input matInput formControlName="gender">
+                        </mat-form-field>
+                        <mat-form-field >
+                          <mat-label>Address</mat-label>
+                          <input matInput formControlName="address">
+                        </mat-form-field>
 
                         <button (click)="addRoom()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
                         Add Employee
@@ -82,34 +90,29 @@
     <div *ngIf="currentTab === 2" class="tabs editRoom">
       <div class="mdl-card">
         <div class="mdl-card__title editTitle">
-          <span>Edit Employee</span>
-          <span>Name {{currentRoom.name}}</span>
+          <span> <span class="title"> Name: </span> <span class="regular-text">{{currentRoom.name}}</span></span>
         </div>
         <div class="mdl-card__supporting-text">
           <div class="form" [formGroup]="editForm" >
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input formControlName="jobprofile" class="mdl-textfield__input" type="text" id="jobprofile">
-                <label class="mdl-textfield__label" for="jobprofile">Job Profile</label>
-              </div>
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input formControlName="email" class="mdl-textfield__input" type="text" id="email">
-                <label class="mdl-textfield__label" for="email">Email</label>
-              </div>
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input formControlName="phone" class="mdl-textfield__input" type="text" id="phone">
-                <label class="mdl-textfield__label" for="phone">Phone</label>
-              </div>
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input formControlName="age" class="mdl-textfield__input" type="text" id="age">
-                <label class="mdl-textfield__label" for="age">Age</label>
-              </div>
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input formControlName="address" class="mdl-textfield__input" type="text" id="address">
-                <label class="mdl-textfield__label" for="address">Address</label>
-              </div>
+            <mat-form-field >
+              <mat-label>Job Profile</mat-label>
+              <input matInput formControlName="jobprofile">
+            </mat-form-field>
+            <mat-form-field >
+              <mat-label>Phone Number</mat-label>
+              <input matInput formControlName="phone">
+            </mat-form-field>
+            <mat-form-field >
+              <mat-label>Age</mat-label>
+              <input matInput formControlName="age">
+            </mat-form-field>
+            <mat-form-field >
+              <mat-label>Address</mat-label>
+              <input matInput formControlName="address">
+            </mat-form-field>
           </div>
         </div>
-        <div class="mdl-card__actions">
+        <div class="mdl-card__actions buttons_edit">
           <button (click)="save()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
             Save Changes
           </button>

@@ -5,6 +5,7 @@ import { BookingComponent } from './admin/booking/booking.component';
 import { EmployeeComponent } from './admin/employee/employee.component';
 import { LoginComponent } from './admin/login/login.component';
 import { RoomsComponent } from './admin/rooms/rooms.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 import { ManagerComponent } from './manager/manager.component';
 import { MbookingComponent } from './manager/mbooking/mbooking.component';
@@ -19,6 +20,10 @@ import { RroomsComponent } from './receptionist/rrooms/rrooms.component';
 const routes: Routes = [
   {
     path: '',
+    component: MainPageComponent
+  },
+  {
+    path: 'admin',
     component: AdminComponent,
     children: [
       {

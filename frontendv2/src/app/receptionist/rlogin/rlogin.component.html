@@ -4,16 +4,16 @@
           <h2 class="mdl-card__title-text">Login</h2>
         </div>
         <div class="mdl-card__supporting-text">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input formControlName="loginEmail" class="mdl-textfield__input" type="email" id="email">
-                <label class="mdl-textfield__label" for="email">Email</label>
-              </div>
+          <mat-form-field >
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="loginEmail">
+          </mat-form-field>
               <span *ngIf="emailIdMissing" class="error">Email id is Required</span>
               <span *ngIf="emailIdWrong" class="error">Email id should be of type @gmail.com</span>
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input formControlName="loginPwd" class="mdl-textfield__input" type="password" id="pwd">
-                <label class="mdl-textfield__label" for="pwd">Password</label>
-              </div>
+              <mat-form-field >
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="loginPwd">
+              </mat-form-field>
               <span *ngIf="passwordMissing" class="error">Password is Required</span>
               <span *ngIf="PasswordWrong" class="error">Password is wrong</span>
               <button (click)="login()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
@@ -28,16 +28,16 @@
           <h2 class="mdl-card__title-text ">Sign up</h2>
         </div>
         <div class="mdl-card__supporting-text">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input formControlName="sgEmail" class="mdl-textfield__input" type="email" id="email">
-                <label class="mdl-textfield__label" for="email">Email</label>
-              </div>
+          <mat-form-field >
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="sgEmail">
+          </mat-form-field>
               <span *ngIf="emailIdMissing" class="error">Email id is Required</span>
               <span *ngIf="emailIdWrong" class="error">Email id should be of type @gmail.com</span>
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input formControlName="sgPwd" class="mdl-textfield__input" type="password" id="pwd">
-                <label class="mdl-textfield__label" for="pwd">Password</label>
-              </div>
+              <mat-form-field >
+                <mat-label>Password</mat-label>
+                <input matInput type="passwrord" formControlName="sgPwd">
+              </mat-form-field>
               <span *ngIf="passwordMissing" class="error">Password is Required</span>
               <span *ngIf="PasswordWrong" class="error">Password is wrong</span>
               <button (click)="signup()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">

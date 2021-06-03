@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
           case 'Auth Successful':{
             console.log('Succesful');
             alert("Logged in successfully")
-            this.router.navigate(['/room'])
+            this.router.navigate(['/admin/room'])
             break;
           }
           case 'Auth Failed':{

@@ -4,21 +4,28 @@
     </div>
     <div *ngIf="currentTab === 0" class="tabs rooms">
         <h2>View Employees</h2>
-        <div *ngFor="let room of allEmployees">
-            <div class="mdl-card">
-                <div class="mdl-card__title">
-                <p>Name:{{room.name}}</p>
-                <p>Job Profile:{{room.jobprofile}}</p>
+        <mat-accordion>
+            <mat-expansion-panel class="expansionPanel" *ngFor="let room of allEmployees" hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <h3 class="title">Name: {{room.name}}</h3>
+                </mat-panel-title>
+                <mat-panel-description>
+                  <h3 class="subtitle">Job Profile: {{room.jobprofile}}</h3>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="body">
+                <div class="body-container">
+                  <div class="column">
+                    <p><span class="bold">Email:</span> {{room.email}}</p>
+                    <p><span class="bold">Phone </span>{{room.phone}}</p>
+                    <p><span class="bold">Age: </span>{{room.age}}</p>
+                    <p><span class="bold">Gender: </span>{{room.gender}}</p>
+                    <p><span class="bold">Address: </span>{{room.address}}</p>
+                  </div>
                 </div>
-                <div class="mdl-card__supporting-text">
-                <p>Email:{{room.email}}</p>
-                <p>Phone:{{room.phone}}</p>
-                <p>Age:{{room.age}}</p>
-                <p>Gender:{{room.gender}}</p>
-                <p>Address:{{room.address}}</p>
-                </div>
-            </div>
-            <br>
-        </div>   
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion> 
     </div>
 </div>

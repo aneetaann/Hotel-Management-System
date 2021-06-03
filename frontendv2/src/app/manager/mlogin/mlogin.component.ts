@@ -58,12 +58,12 @@ export class MloginComponent implements OnInit {
         "password": this.loginForm.get('loginPwd')?.value
       } 
       console.log(bodyem)
-      this.httpC.post<any>('http://localhost:3001/receptionist/login',bodyem).subscribe((x) => {
+      this.httpC.post<any>('http://localhost:3001/manager/login',bodyem).subscribe((x) => {
         switch(x.message){
           case 'Auth Successful':{
             console.log('Succesful');
             alert("Logged in successfully")
-            this.router.navigate(['/room'])
+            this.router.navigate(['/manager/room'])
             break;
           }
           case 'Auth Failed':{
@@ -91,7 +91,7 @@ export class MloginComponent implements OnInit {
         "password": this.loginForm.get('loginPwd')?.value
       } 
       console.log(bodyem)
-      this.httpC.post<any>('http://localhost:3001/receptionist/signup',bodyem).subscribe((x) => {
+      this.httpC.post<any>('http://localhost:3001/manager/signup',bodyem).subscribe((x) => {
         switch(x.message){
           case 'Mail already exists':{
             console.log('Unsuccessful');

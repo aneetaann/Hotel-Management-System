@@ -12,10 +12,13 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { ManagerModule } from './manager/manager.module';
 import { ReceptionistModule} from './receptionist/receptionist.module';
+import { MainPageComponent } from './main-page/main-page.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,

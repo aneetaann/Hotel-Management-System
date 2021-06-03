@@ -10,3 +10,16 @@
   .mdl-layout__header-row{
       background-color: rgba(0,0,0,0.5) !important;
   }
+  .glass{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    backdrop-filter: blur(30px);
+}
+  footer{
+    z-index: 1;
+  }

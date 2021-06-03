@@ -4,19 +4,26 @@
     </div>
     <div *ngIf="currentTab === 0" class="tabs rooms">
         <h2>View Rooms</h2>
-        <div *ngFor="let room of allRooms">
-            <div class="mdl-card">
-                <div class="mdl-card__title">
-                <p>Room Number:{{room.roomnumber}}</p> <br>
-                <p>Floor:{{room.floor}}</p>
+        <mat-accordion>
+            <mat-expansion-panel class="expansionPanel" *ngFor="let room of allRooms" hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <h3 class="title">Room Number: {{room.roomnumber}}</h3>
+                </mat-panel-title>
+                <mat-panel-description>
+                  <h3 class="subtitle">Floor: {{room.floor}}</h3>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="body">
+                <div class="body-container">
+                  <div class="column">
+                    <p><span class="bold">Type:</span> {{room.type}}</p>
+                    <p><span class="bold">Price </span>{{room.price}}</p>
+                    <p><span class="bold">Availability: </span>{{room.availability}}</p>
+                  </div>
                 </div>
-                <div class="mdl-card__supporting-text">
-                <p>Type:{{room.type}}</p>
-                <p>Price:{{room.price}}</p>
-                <p>Availability:{{room.availability}}</p>
-                </div>
-            </div>
-            <br>
-        </div>   
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>  
     </div>
 </div>

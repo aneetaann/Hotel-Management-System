@@ -1,0 +1,118 @@
+.container{
+    height: 100vh;
+    width: 100%;
+}
+.header{
+    height: 60vh;
+    background-image: linear-gradient(to top, rgba(0,0,0), rgba(0,0,0,0.2)),url(../../assets/images/header-bg.jpg);
+    background-size: 100%;
+    background-position: center;
+}
+.nav{
+    height: 10vh;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding:15px;
+    box-shadow: 0 2px 5px 5px rgba(0,0,0,0.5);
+}
+.logo{
+    text-transform: uppercase;
+    border: 4px solid black;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    letter-spacing: 1px;
+}
+.header-body{
+    color: white;
+    width: 80%;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+h1{
+    font-size: 4.5rem;
+    letter-spacing: 0.5px;
+    padding: 40px 25px;
+    font-weight: 800;
+}
+h3{
+    font-size: 3rem;
+    letter-spacing: 1.5px;
+    padding: 0 25px;
+    font-weight: 400;
+    color: white;
+}
+.body{
+    height: 30vh;
+    background-color: rgb(0, 0, 0);
+    padding: 15px;
+}
+.links{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.boxes{
+    display: flex;
+    flex-direction: row;
+    margin: auto 0;
+}
+.box{
+    height: 150px;
+    width: 150px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+#admin,#manager,#receptionist{
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 50%;
+    background-color: rgb(224, 224, 224);
+    transition: all 0.5s ease-out;
+}
+#admin:hover,#manager:hover,#receptionist:hover{
+    transform: scale(1.2);
+    background-color: rgb(153, 153, 153);
+    box-shadow: 0 0 7px 7px rgba(201, 200, 200, 0.2);
+    font-size: 1.2rem;
+    background-position: center;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    color: transparent;
+}
+#admin:hover{
+    background-image: url(../../assets/images/admin.svg);
+}
+#manager:hover{
+    background-image: url(../../assets/images/manager.svg);
+}
+#receptionist:hover{
+    background-image: url(../../assets/images/receptionist.svg);
+    background-size: 60% !important;
+}
+.footer{
+    height: fit-content;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 17px;
+}

@@ -29,7 +29,6 @@ export class EmployeeComponent implements OnInit {
   })
   editForm = new FormGroup({
     jobprofile: new FormControl('',Validators.required),
-    email: new FormControl('',Validators.required),
     phone: new FormControl('',Validators.required),
     age: new FormControl('',Validators.required),
     address: new FormControl('',Validators.required)
@@ -84,7 +83,6 @@ export class EmployeeComponent implements OnInit {
       console.log(this.currentRoom)
       this.editForm.setValue({
         'jobprofile': this.currentRoom.jobprofile,
-        'email': this.currentRoom.email,
         'phone': this.currentRoom.phone,
         'age': this.currentRoom.age,
         'address': this.currentRoom.address
@@ -97,7 +95,6 @@ export class EmployeeComponent implements OnInit {
   save(){
     let obj = {
       'jobprofile': this.editForm.get('jobprofile')?.value,
-      'email': this.editForm.get('email')?.value,
       'phone': this.editForm.get('phone')?.value,
       'age': this.editForm.get('age')?.value,
       'address': this.editForm.get('address')?.value,

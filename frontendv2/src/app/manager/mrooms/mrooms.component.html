@@ -1,34 +1,40 @@
 <div class="container">
     <div class="options">
-        <a  (click)="changeCurrentTab(0)">All Rooms</a>
-        <a (click)="changeCurrentTab(1)">Add Rooms</a>
-        <a (click)="changeCurrentTab(2)">Edit Rooms</a>
+      <a [ngStyle]="currentTab === 0 ? {'background-color':'rgba(0,0,0,0.4)' , 'color':'white'} : {'background-color':'transparent', 'color':'black'}" (click)="changeCurrentTab(0)">All Rooms</a>
+      <a [ngStyle]="currentTab === 1 ? {'background-color':'rgba(0,0,0,0.4)' , 'color':'white'} : {'background-color':'transparent', 'color':'black'}" (click)="changeCurrentTab(1)">Add Rooms</a>
+      <a  [ngStyle]="currentTab === 2 ? {'background-color':'rgba(0,0,0,0.4)' , 'color':'white'} : {'background-color':'transparent', 'color':'black'}" (click)="changeCurrentTab(2)">Edit Rooms</a>
     </div>
     <div *ngIf="currentTab === 0" class="tabs rooms">
         <h2>View Rooms</h2>
-        <div *ngFor="let room of allRooms">
-            <div class="mdl-card">
-                <div class="mdl-card__title">
-                <p>Room Number:{{room.roomnumber}}</p> <br>
-                <p>Floor:{{room.floor}}</p>
+        <mat-accordion>
+          <mat-expansion-panel class="expansionPanel" *ngFor="let room of allRooms" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h3 class="title">Room Number: {{room.roomnumber}}</h3>
+              </mat-panel-title>
+              <mat-panel-description>
+                <h3 class="subtitle">Floor: {{room.floor}}</h3>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="body">
+              <div class="body-container">
+                <div class="column">
+                  <p><span class="bold">Type:</span> {{room.type}}</p>
+                  <p><span class="bold">Price </span>{{room.price}}</p>
+                  <p><span class="bold">Availability: </span>{{room.availability}}</p>
                 </div>
-                <div class="mdl-card__supporting-text">
-                <p>Type:{{room.type}}</p>
-                <p>Price:{{room.price}}</p>
-                <p>Availability:{{room.availability}}</p>
-                </div>
-                <div class="mdl-card__actions">
-                  <button (click)="deleteRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
-                    Delete
-                  </button>
-                  <button (click)="editRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
-                    Edit
-                  </button>
-                </div>
+              </div>
+              <div class="buttons">
+                <button (click)="deleteRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                  Delete
+                </button>
+                <button (click)="editRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                  Edit
+                </button>
+              </div>
             </div>
-            <br>
-        </div>
-        
+          </mat-expansion-panel>
+        </mat-accordion>
     </div>
     <div *ngIf="currentTab === 1" class="tabs addRooms">
         <div class="container">
@@ -37,32 +43,31 @@
                   <h2 class="mdl-card__title-text">Add Room</h2>
                   </div>
                 <div class="mdl-card__supporting-text">
-                      <div class="form" [formGroup]="roomForm" >
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                          <input formControlName="roomNo" class="mdl-textfield__input" type="text" id="rNo">
-                          <label class="mdl-textfield__label" for="rNo">Room No</label>
+                        <div class="form" [formGroup]="roomForm" >
+                          <mat-form-field >
+                            <mat-label>Room No</mat-label>
+                            <input matInput formControlName="roomNo">
+                          </mat-form-field>
+                          <mat-form-field >
+                            <mat-label>Floor</mat-label>
+                            <input matInput formControlName="floor">
+                          </mat-form-field>
+                          <mat-form-field >
+                            <mat-label>Type</mat-label>
+                            <input matInput formControlName="type">
+                          </mat-form-field>
+                          <mat-form-field >
+                            <mat-label>Availabilty</mat-label>
+                            <input matInput formControlName="availability">
+                          </mat-form-field>
+                          <mat-form-field >
+                            <mat-label>Price</mat-label>
+                            <input matInput formControlName="price">
+                          </mat-form-field>
+                          <button (click)="addRoom()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                          Add Room
+                          </button>
                         </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                          <input formControlName="floor" class="mdl-textfield__input" type="text" id="floor">
-                          <label class="mdl-textfield__label" for="floor">Floor</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                          <input formControlName="type" class="mdl-textfield__input" type="text" id="type">
-                          <label class="mdl-textfield__label" for="type">Type</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                          <input formControlName="availability" class="mdl-textfield__input" type="text" id="avails">
-                          <label class="mdl-textfield__label" for="avails">Availability</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                          <input formControlName="price" class="mdl-textfield__input" type="text" id="price">
-                          <label class="mdl-textfield__label" for="price">Price</label>
-                        </div>
-
-                        <button (click)="addRoom()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
-                        Add Room
-                        </button>
-                      </div>
                 </div>
               </div>
     
@@ -72,20 +77,20 @@
     <div *ngIf="currentTab === 2" class="tabs editRoom">
       <div class="mdl-card">
         <div class="mdl-card__title editTitle">
-          <span>Edit Room</span>
-          <span>Room number {{currentRoom.roomnumber}}</span>
-          <span>Floor {{currentRoom.floor}}</span>
+          
+          <span> <span class="title"> Room Number: </span> <span class="regular-text">{{currentRoom.roomnumber}}</span></span>
+          <span> <span class="title"> Floor: </span> <span class="regular-text">{{currentRoom.floor}}</span></span>
         </div>
         <div class="mdl-card__supporting-text">
           <div class="form" [formGroup]="editForm" >
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input formControlName="availability" class="mdl-textfield__input" type="text" id="avails">
-                <label class="mdl-textfield__label" for="avails">Availability</label>
-              </div>
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input formControlName="price" class="mdl-textfield__input" type="text" id="price">
-                <label class="mdl-textfield__label" for="price">Price</label>
-              </div>
+            <mat-form-field >
+              <mat-label>Availabilty</mat-label>
+              <input matInput formControlName="availability">
+            </mat-form-field>
+            <mat-form-field >
+              <mat-label>Price</mat-label>
+              <input matInput formControlName="price">
+            </mat-form-field>
           </div>
         </div>
         <div class="mdl-card__actions">
