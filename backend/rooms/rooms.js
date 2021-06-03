@@ -11,7 +11,7 @@ rooms.use(express.json());
 rooms.use(express.urlencoded({ extended: false }));
 rooms.use(cors());
 
-/*swagger
+//swagger
 const swaggerJSDoc = require('swagger-jsdoc');
 
 const swaggerDefinition = {
@@ -32,7 +32,7 @@ const swaggerSpec = swaggerJSDoc(options);
 
 const swaggerUi = require('swagger-ui-express');
 
-rooms.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));*/
+rooms.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 //mongoose
 require("./models/room");
@@ -89,8 +89,8 @@ rooms.post("/room", (req, res) => {
  * @swagger
  * /room:
  *   post:
- *     summary: add new rooms
- *     description: users can add rooms using CRUD operations
+ *     summary: Add new rooms
+ *     description: Users can add rooms using CRUD operations
  *     requestBody:
  *       required: true
  *       content:
@@ -121,7 +121,7 @@ rooms.post("/room", (req, res) => {
  *              
  *     responses:
  *       200:
- *         description: It will create a new room
+ *         description: Creates a new room
  *         content:
  *           application/json:
  *             schema:
@@ -152,11 +152,11 @@ rooms.get("/room", (req, res) => {
  * @swagger
  * /room:
  *   get:
- *     summary: Retrieve a list of all rooms
- *     description: Retrieve a list of rooms from rooms databse. Can be used for bookings.
+ *     summary: View all rooms
+ *     description: Retrieve all rooms from rooms databse.
  *     responses:
  *       200:
- *         description: A list of trains.
+ *         description: A list of rooms.
  *         content:
  *           application/json:
  *             schema:
@@ -170,7 +170,7 @@ rooms.get("/room", (req, res) => {
  *                       roomnumber:
  *                         type: number
  *                         description: The room number.
- *                         example: 111
+ *                         example: 12
  *                       floor:
  *                         type: number
  *                         description: The room's floor location.
@@ -186,7 +186,7 @@ rooms.get("/room", (req, res) => {
  *                       price:
  *                         type: number
  *                         description: price of room.
- *                         example: 200
+ *                         example: 2000
  */
 
 //list room by id
@@ -206,6 +206,51 @@ rooms.get("/room/:roomId", (req, res) => {
 			}
 		});
 });
+/**
+ * @swagger
+ * /room/:roomId:
+ *   get:
+ *     summary: View a specific room with the help of room id.
+ *     description: Retrieve a specific room.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Numeric ID of the room
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: A single room
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                    roomnumber:
+ *                      type: number
+ *                      description: The room number.
+ *                      example: 12
+ *                    floor:
+ *                      type: number
+ *                      description: The room's floor location.
+ *                      example: 1
+ *                    type:
+ *                      type: string
+ *                      description: type of room
+ *                      example: basic
+ *                    availability:
+ *                      type: string
+ *                      description: if room is available
+ *                      example: yes
+ *                    price:
+ *                      type: number
+ *                      description: price of room.
+ *                      example: 2000
+*/
 
 //update room by id
 rooms.put("/room/:roomId", (req, res) => {
@@ -222,6 +267,85 @@ rooms.put("/room/:roomId", (req, res) => {
 		});
 });
 });
+/**
+ * @swagger
+ * /room/:roomId:
+ *   put:
+ *     summary: Update room details of a specific room
+ *     description: update room details in database
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Numeric ID of the room
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               roomnumber:
+ *                 type: number
+ *                 description: The room number.
+ *                 example: 12
+ *               floor:
+ *                 type: number
+ *                 description: The room's floor location.
+ *                 example: 1
+ *               type:
+ *                 type: string
+ *                 description: type of room
+ *                 example: basic
+ *               availability:
+ *                 type: string
+ *                 description: if room is available
+ *                 example: yes
+ *               price:
+ *                 type: number
+ *                 description: price of room.
+ *                 example: 2000
+ *              
+ *     responses:
+ *       201:
+ *         description: It will update room along with required paramaters.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       message:
+ *                         type: string
+ *                         description: information if updated
+ *                         example: Room details have been updated
+ *                       roomnumber:
+ *                         type: number
+ *                         description: The room number.
+ *                         example: 12
+ *                       floor:
+ *                         type: number
+ *                         description: The room's floor location.
+ *                         example: 1
+ *                       type:
+ *                         type: string
+ *                         description: type of room
+ *                         example: basic
+ *                       availability:
+ *                         type: string
+ *                         description: if room is available
+ *                         example: yes
+ *                       price:
+ *                         type: number
+ *                         description: price of room.
+ *                         example: 2000
+ */
 
 //delete room
 rooms.delete("/room/:roomId", (req, res) => {
@@ -240,6 +364,37 @@ rooms.delete("/room/:roomId", (req, res) => {
 			}
 		});
 });
+/**
+ * @swagger
+ * /room/:roomId:
+ *   delete:
+ *     summary: Delete a specific room with the help of room id.
+ *     description: Delete a specific room.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Numeric ID of the room
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Deletes a room
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                         message:
+ *                          type: strig
+ *                          description: message for successful room removal or else error message
+ *                          example: Room Deleted Successfully
+ */
 
 rooms.listen(4000, () => {
 	console.log("Room management server running on localhost:4000");
