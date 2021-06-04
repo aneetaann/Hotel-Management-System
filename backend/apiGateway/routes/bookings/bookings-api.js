@@ -10,7 +10,7 @@ module.exports = (baseURL) => {
   });
 }
 var bookings_api=axios.create({
-  baseURL: 'http://localhost:6000' 
+  baseURL: 'http://localhost:4500' 
 })
 
 //==========bookings==========

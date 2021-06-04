@@ -11,6 +11,30 @@ bookings.use(express.json());
 bookings.use(express.urlencoded({ extended: false }));
 bookings.use(cors());
 
+//swagger
+const swaggerJSDoc = require('swagger-jsdoc');
+
+const swaggerDefinition = {
+  openapi: '3.0.0',
+  info: {
+    title: 'Express API for Hotel-Management-System-Bookings',
+    version: '1.0.0',
+  },
+};
+
+const options = {
+  swaggerDefinition,
+  // Paths to files containing OpenAPI definitions
+  apis: ['./bookings.js'],
+};
+
+const swaggerSpec = swaggerJSDoc(options);
+
+const swaggerUi = require('swagger-ui-express');
+
+bookings.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+//mongoose
 require("./models/booking");
 const Booking = mongoose.model("Booking");
 
@@ -61,7 +85,82 @@ bookings.post("/booking", (req, res) => {
 		});
 	
 });
-
+/**
+ * @swagger
+ * /booking:
+ *   post:
+ *     summary: Add new bookings
+ *     description: Users can add bookings using CRUD operations
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               guestname:
+ *                 type: string
+ *                 description: guest name
+ *                 example: Akshay
+ *               email: 
+ *                 type: string
+ *                 description: email of guest
+ *                 example: abc@gmail.com
+ *               phone:
+ *                 type: number
+ *                 description: contact of guest
+ *                 example: 9797979797
+ *               age:
+ *                 type: number
+ *                 description: age of guest
+ *                 example: 27
+ *               gender:
+ *                 type: string
+ *                 description: gender
+ *                 example: Male
+ *               address:
+ *                 type: string
+ *                 description: address
+ *                 example: Mumbai, India
+ *               room:
+ *                 type: string
+ *                 description: room details 
+ *                 example: 1,1,Basic
+ *               checkin:
+ *                 type: Date
+ *                 description: check in date
+ *                 example: 2021-05-05
+ *               checkout:
+ *                 type: Date
+ *                 description: check out date
+ *                 example: 2021-05-07
+ *               paymentmode:
+ *                 type: string
+ *                 description: mode of payment
+ *                 example: cash
+ *               totalamount:
+ *                 type: number
+ *                 description: total amount
+ *                 example: 1500
+ *              
+ *     responses:
+ *       200:
+ *         description: Adds a new booking
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                         message:
+ *                          type: strig
+ *                          description: message for successful booking addition or else error message
+ *                          example: New Booking Added Successfully
+ */
 
 //list all bookings
 bookings.get("/booking", (req, res) => {
@@ -73,7 +172,70 @@ bookings.get("/booking", (req, res) => {
 			throw err;
 		});
 });
-
+/**
+ * @swagger
+ * /booking:
+ *   get:
+ *     summary: View all bookings
+ *     description: Retrieve all bookings from database
+ *     responses:
+ *       200:
+ *         description: A list of bookings
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *             properties:
+ *               guestname:
+ *                 type: string
+ *                 description: guest name
+ *                 example: Akshay
+ *               email:
+ *                 type: string
+ *                 description: email id of guest
+ *                 example: abc@gmail.com
+ *               phone:
+ *                 type: number
+ *                 description: phone number
+ *                 example: 9898989898
+ *               age:
+ *                 type: number
+ *                 description: age
+ *                 example: 27
+ *               gender:
+ *                 type: string
+ *                 description: gender
+ *                 example: male
+ *               address:
+ *                 type: string
+ *                 description: address
+ *                 example: Mumbai, Maharashtra, India
+ *               room:
+ *                 type: string
+ *                 description: room details
+ *                 example: 1,1,Basic
+ *               checkin:
+ *                 type: Date
+ *                 description: check in date
+ *                 example: 2021-05-05
+ *               checkout:
+ *                 type: Date
+ *                 description: check out date
+ *                 example: 2021-05-07
+ *               paymentmode:
+ *                 type: string
+ *                 description: mode of payment
+ *                 example: cash
+ *               totalamount:
+ *                 type: number
+ *                 description: total amount
+ *                 example: 1500
+ */
 
 //list bookings by id
 bookings.get("/booking/:bookingId", (req, res) => {
@@ -92,7 +254,72 @@ bookings.get("/booking/:bookingId", (req, res) => {
 			}
 		});
 });
-
+/**
+ * @swagger
+ * /booking/:bookingId:
+ *   get:
+ *     summary: View a specific booking with the help of booking id.
+ *     description: Retrieve a specific booking
+ *     parameters:
+ *       - in: path
+ *         name: bookingId
+ *         required: true
+ *         description: ID of the booking
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: A single booking
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *             properties:
+ *               guestname:
+ *                 type: string
+ *                 description: guest name
+ *                 example: Akshay
+ *               email:
+ *                 type: string
+ *                 description: email id
+ *                 example: abc@gmail.com
+ *               phone:
+ *                 type: number
+ *                 description: phone number
+ *                 example: 9898989898
+ *               age:
+ *                 type: number
+ *                 description: age
+ *                 example: 27
+ *               gender:
+ *                 type: string
+ *                 description: gender
+ *                 example: male
+ *               address:
+ *                 type: string
+ *                 description: address of employee
+ *                 example: Mumbai, Maharashtra, India
+ *               room:
+ *                 type: string
+ *                 description: room details
+ *                 example: 1,1,Basic
+ *               checkin:
+ *                 type: Date
+ *                 description: check in date
+ *                 example: 2021-05-05
+ *               checkout:
+ *                 type: Date
+ *                 description: check out date
+ *                 example: 2021-05-07
+ *               paymentmode:
+ *                 type: string
+ *                 description: mode of payment
+ *                 example: cash
+ *               totalamount:
+ *                 type: number
+ *                 description: total amount
+ *                 example: 1500
+ */
 
 //update booking by id
 bookings.put("/booking/:bookingId", (req, res) => {
@@ -111,6 +338,133 @@ bookings.put("/booking/:bookingId", (req, res) => {
 		});
 });
 });
+/**
+ * @swagger
+ * /booking/:bookingId:
+ *   put:
+ *     summary: Update booking details of a specific booking
+ *     description: update booking details in database
+ *     parameters:
+ *       - in: path
+ *         name: bookingId
+ *         required: true
+ *         description: ID of the booking
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               guestname:
+ *                 type: string
+ *                 description: guest name
+ *                 example: Akash
+ *               email:
+ *                 type: string
+ *                 description: email id
+ *                 example: abc@gmail.com
+ *               phone:
+ *                 type: number
+ *                 description: phone number
+ *                 example: 9898989898
+ *               age:
+ *                 type: number
+ *                 description: age
+ *                 example: 27
+ *               gender:
+ *                 type: string
+ *                 description: gender
+ *                 example: male
+ *               address:
+ *                 type: string
+ *                 description: address
+ *                 example: Mumbai, Maharashtra, India
+ *               room:
+ *                 type: string
+ *                 description: room details
+ *                 example: 1,1,Basic
+ *               checkin:
+ *                 type: Date
+ *                 description: check in date
+ *                 example: 2021-05-05
+ *               checkout:
+ *                 type: Date
+ *                 description: check out date
+ *                 example: 2021-05-07
+ *               paymentmode:
+ *                 type: string
+ *                 description: mode of payment
+ *                 example: cash
+ *               totalamount:
+ *                 type: number
+ *                 description: total amount
+ *                 example: 1500
+ *              
+ *     responses:
+ *       201:
+ *         description: It will update booking along with required paramaters.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       message:
+ *                         type: string
+ *                         description: information if updated
+ *                         example: booking details have been updated
+ *                       guestname:
+ *                         type: string
+ *                         description: Guest name
+ *                         example: Akash
+ *                       email:
+ *                         type: string
+ *                         description: email
+ *                         example: abc@gmail.com
+ *                       phone:
+ *                         type: number
+ *                         description: contact
+ *                         example: 9797979797
+ *                       age:
+ *                         type: number
+ *                         description: age
+ *                         example: 26
+ *                       gender:
+ *                         type: string
+ *                         description: gender
+ *                         example: male
+ *                       address:
+ *                         type: string
+ *                         description: address
+ *                         example: Mumbai
+ *                       room:
+ *                         type: string
+ *                         description: room details
+ *                         example: 1,1,Basic
+ *                       checkin:
+ *                         type: Date
+ *                         description: check in date
+ *                         example: 2021-05-05
+ *                       checkout:
+ *                         type: Date
+ *                         description: check out date
+ *                         example: 2021-05-07
+ *                       paymentmode:
+ *                         type: string
+ *                         description: mode of payment
+ *                         example: cash
+ *                       totalamount:
+ *                         type: number
+ *                         description: total amount
+ *                         example: 1500
+ */
 
 //delete bookings
 bookings.delete("/booking/:bookingId", (req, res) => {
@@ -129,9 +483,39 @@ bookings.delete("/booking/:bookingId", (req, res) => {
 			}
 		});
 });
+/**
+ * @swagger
+ * /booking/:bookingId:
+ *   delete:
+ *     summary: Delete a specific booking with the help of booking id.
+ *     description: Delete a specific booking
+ *     parameters:
+ *       - in: path
+ *         name: bookingId
+ *         required: true
+ *         description: ID of the booking
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Deletes a booking
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                         message:
+ *                          type: string
+ *                          description: message for successful booking removal or else error message
+ *                          example: Booking Deleted Successfully
+ */
 
-
-bookings.listen(6000, () => {
+bookings.listen(4500, () => {
 	console.log("bookings management server running on localhost:6000");
 });
 
