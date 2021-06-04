@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+//import {AuthService} from "../auth.service";  
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.isLoginFlag)
   }
-  openSignUp(){
+  openSignUp(){  
     this.isLoginFlag = true;
     this.emailIdMissing = false
     this.emailIdWrong = false
