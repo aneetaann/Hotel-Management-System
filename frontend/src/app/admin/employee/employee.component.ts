@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee',
@@ -34,7 +36,7 @@ export class EmployeeComponent implements OnInit {
     address: new FormControl('',Validators.required)
   })
   allEmployees:Array<any>=[];
-  constructor(private httpc: HttpClient) { 
+  constructor(private httpc: HttpClient, private loginservice: LoginService, private router: Router) { 
    
   }
 
@@ -45,6 +47,9 @@ export class EmployeeComponent implements OnInit {
     //   console.log(x)
     // })
     console.log("hello")
+    if(!this.loginservice.getLoginFlagVal()){
+      this.router.navigate(['/admin'])
+    }
     let response:any[]=[]
     this.httpc.get<Object>('http://localhost:3001/employee').subscribe(
       (res) => {

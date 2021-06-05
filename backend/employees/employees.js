@@ -154,7 +154,7 @@ employees.get("/employee", (req, res) => {
 			res.json(employee);
 		})
 		.catch((err) => {
-			throw err;
+			res.statusCode(401).json(err)
 		});
 });
 /**

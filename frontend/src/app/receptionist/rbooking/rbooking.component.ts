@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-rbooking',
@@ -19,7 +21,7 @@ export class RbookingComponent implements OnInit {
   editForm:FormGroup;
   
   allBookings:Array<any>=[];
-  constructor(private httpc: HttpClient) { 
+  constructor(private httpc: HttpClient, private router: Router, private loginservice: LoginService) { 
     const today = new Date();
     this.month = today.getMonth();
     this.year = today.getFullYear();
@@ -52,6 +54,9 @@ export class RbookingComponent implements OnInit {
     //   console.log(this.allBookings)
     //   console.log(x)
     // })
+    if(!this.loginservice.getloginFlagVal()){
+      this.router.navigate(['/receptionist'])
+    }
     console.log("hello")
     let response:any[]=[]
     this.httpc.get<Object>('http://localhost:3001/booking').subscribe(

@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from '../login.service';
+
 
 @Component({
   selector: 'app-mlogin',
@@ -23,9 +25,12 @@ export class MloginComponent implements OnInit {
     sgEmail: new FormControl('',[Validators.required, Validators.pattern('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+[a-z]{2,4}$')]),
     sgPwd: new FormControl('',Validators.required)
   })
-  constructor(private httpC: HttpClient, private router: Router) { }
+  constructor(private httpC: HttpClient, private router: Router, private loginservice: LoginService) { }
 
   ngOnInit(): void {
+    if(this.loginservice.getloginFlagVal()){
+      this.router.navigate(['/manager/room'])
+    }
     console.log(this.isLoginFlag)
   }
   openSignUp(){
@@ -43,6 +48,7 @@ export class MloginComponent implements OnInit {
     this.PasswordWrong= false
   }
   login(){
+    console.log('hey')
     if(this.loginForm.get('loginEmail')?.errors?.required){
       this.emailIdMissing = true
     }
@@ -57,18 +63,23 @@ export class MloginComponent implements OnInit {
         "email": this.loginForm.get('loginEmail')?.value,
         "password": this.loginForm.get('loginPwd')?.value
       } 
-      console.log(bodyem)
+      console.log("hii",bodyem)
       this.httpC.post<any>('http://localhost:3001/manager/login',bodyem).subscribe((x) => {
+        console.log('heyy',x.message)
         switch(x.message){
           case 'Auth Successful':{
             console.log('Succesful');
+            localStorage.setItem('manager',x.token)
+            this.loginservice.setloginFlagVal(true)
             alert("Logged in successfully")
             this.router.navigate(['/manager/room'])
             break;
           }
-          case 'Auth Failed':{
+          case 'Auth failed':{
             console.log('unsuccessuful');
             alert("logged in Failed")
+            localStorage.clear()
+            this.loginservice.setloginFlagVal(false)
             break;
           }
         }
@@ -87,8 +98,8 @@ export class MloginComponent implements OnInit {
     }
     if(this.passwordMissing === false && this.emailIdWrong === false && this.emailIdMissing === false){
       const bodyem = {
-        "email": this.loginForm.get('loginEmail')?.value,
-        "password": this.loginForm.get('loginPwd')?.value
+        "email": this.signupForm.get('sgEmail')?.value,
+        "password": this.signupForm.get('sgPwd')?.value
       } 
       console.log(bodyem)
       this.httpC.post<any>('http://localhost:3001/manager/signup',bodyem).subscribe((x) => {
@@ -100,7 +111,8 @@ export class MloginComponent implements OnInit {
           }
           case 'User created':{
             console.log('successuful');
-            alert("Sucessfully signed up")
+            alert("Sucessfully signed up");
+            this.openLogIn()
             break;
           }
         }

@@ -7,8 +7,7 @@ import { AdminModule } from './admin/admin.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { ManagerModule } from './manager/manager.module';
 import { ReceptionistModule} from './receptionist/receptionist.module';
@@ -28,10 +27,10 @@ import { RouterModule } from '@angular/router';
     ReceptionistModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
     MatDatepickerModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

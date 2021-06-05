@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from '../login.service';
 //import {AuthService} from "../auth.service";  
 
 @Component({
@@ -24,9 +25,12 @@ export class LoginComponent implements OnInit {
     sgEmail: new FormControl('',[Validators.required, Validators.pattern('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+[a-z]{2,4}$')]),
     sgPwd: new FormControl('',Validators.required)
   })
-  constructor(private httpC: HttpClient, private router: Router) { }
+  constructor(private httpC: HttpClient, private router: Router, private loginservice: LoginService) { }
 
   ngOnInit(): void {
+    if(this.loginservice.getLoginFlagVal()){
+      this.router.navigate(['/admin/room'])
+    }
     console.log(this.isLoginFlag)
   }
   openSignUp(){  
@@ -65,11 +69,15 @@ export class LoginComponent implements OnInit {
             console.log('Succesful');
             alert("Logged in successfully")
             this.router.navigate(['/admin/room'])
+            localStorage.setItem('admin',x.token)
+            this.loginservice.setLoginFlagVal(true)
             break;
           }
-          case 'Auth Failed':{
+          case 'Auth failed':{
             console.log('unsuccessuful');
             alert("logged in Failed")
+            localStorage.clear()
+            this.loginservice.setLoginFlagVal(false)
             break;
           }
         }
@@ -88,8 +96,8 @@ export class LoginComponent implements OnInit {
     }
     if(this.passwordMissing === false && this.emailIdWrong === false && this.emailIdMissing === false){
       const bodyem = {
-        "email": this.loginForm.get('loginEmail')?.value,
-        "password": this.loginForm.get('loginPwd')?.value
+        "email": this.signupForm.get('sgEmail')?.value,
+        "password": this.signupForm.get('sgPwd')?.value
       } 
       console.log(bodyem)
       this.httpC.post<any>('http://localhost:3001/admin/signup',bodyem).subscribe((x) => {
@@ -101,8 +109,12 @@ export class LoginComponent implements OnInit {
           }
           case 'User created':{
             console.log('successuful');
-            alert("Sucessfully signed up")
+            alert("Sucessfully signed up");
+            this.openLogIn()
             break;
+          }
+          default: {
+            console.log('hallo',x.message)
           }
         }
       })

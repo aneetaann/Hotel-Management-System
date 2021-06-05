@@ -52,13 +52,13 @@ router.post('/login', (req, res, next) => {
     .exec()
     .then(user => {
         if (user.length < 1){
-            return res.status(401).json({
+            return res.status(200).json({
                 message: 'Auth failed'
             });
         }
         bcrypt.compare(req.body.password, user[0].password, (err, result) => {
             if (err){
-                return res.status(401).json({
+                return res.status(200).json({
                     message: 'Auth failed'
                 });
             }
@@ -77,7 +77,7 @@ router.post('/login', (req, res, next) => {
                     token: token
                 });
             }
-            res.status(401).json({
+            res.status(200).json({
                 message: 'Auth failed'
             });
         });

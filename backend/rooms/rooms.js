@@ -145,7 +145,8 @@ rooms.get("/room", (req, res) => {
 			res.json(room);
 		})
 		.catch((err) => {
-			throw err;
+			// throw err;
+			res.status(401).json(err)
 		});
 });
 /**

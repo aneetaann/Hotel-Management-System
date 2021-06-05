@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-rooms',
@@ -31,7 +33,7 @@ export class RoomsComponent implements OnInit {
     availability: new FormControl('',Validators.required)
   })
   allRooms:Array<any>=[];
-  constructor(private httpc: HttpClient) { 
+  constructor(private httpc: HttpClient, private router: Router, private loginservice:LoginService) { 
    
   }
 
@@ -41,6 +43,9 @@ export class RoomsComponent implements OnInit {
     //   console.log(this.allRooms)
     //   console.log(x)
     // })
+    if(!this.loginservice.getLoginFlagVal()){
+      this.router.navigate(['/admin'])
+    }
     console.log("hello")
     let response:any[]=[]
     this.httpc.get<Object>('http://localhost:3001/room').subscribe(
