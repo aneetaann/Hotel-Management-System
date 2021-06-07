@@ -5,13 +5,6 @@ const mongoose = require("mongoose");
 const axios = require("axios");
 require("dotenv/config");
 
-/*const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
-userlogin.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-var options = {
-  explorer: true
-};
-*/
 //swagger
 const swaggerJSDoc = require('swagger-jsdoc');
 
