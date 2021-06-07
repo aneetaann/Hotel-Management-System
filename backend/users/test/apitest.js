@@ -6,17 +6,18 @@ let server = require('../routes');
 
 describe('users', ()=> {
     describe('/POST signup', ()=>{
-        it('it should POST admin signup', (done)=>{
+        it('it should POST users signup', (done)=>{
             chai.request(server)
             .post('/signup')
             .end((err, res)=>{
                 (res).should.have.status(201);
                 (res.body).should.be.a('object');
+                (res.body.users.length).should.be.eql(1);
                 done();
             });
         });
     });
-});
+
 describe('/POST login', ()=>{
     it('it should POST login', (done)=>{
         chai.request(server)
@@ -27,4 +28,5 @@ describe('/POST login', ()=>{
             done();
         });
     });
+});
 });

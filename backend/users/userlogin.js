@@ -12,6 +12,28 @@ var options = {
   explorer: true
 };
 */
+//swagger
+const swaggerJSDoc = require('swagger-jsdoc');
+
+const swaggerDefinition = {
+  openapi: '3.0.0',
+  info: {
+    title: 'Express API for Hotel-Management-System-Users',
+    version: '1.0.0',
+  },
+};
+
+const options = {
+  swaggerDefinition,
+  // Paths to files containing OpenAPI definitions
+  apis: ['./routes/*.js'],
+};
+
+const swaggerSpec = swaggerJSDoc(options);
+
+const swaggerUi = require('swagger-ui-express');
+
+userlogin.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 const adminRoutes = require('./routes/admin-api');
 const managerRoutes = require("./routes/manager-api");

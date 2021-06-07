@@ -45,6 +45,33 @@ router.post('/signup', (req, res, next) => {
         }
     });
 });
+/**
+ * @swagger
+ * /manager/signup:
+ *   post:  
+ *     summary: manager signup.
+ *     tags:
+ *      - manager
+ *     consumes:
+ *       - application/json
+ *     parameters:
+ *       - in: body
+ *         name: body
+ *         required: true
+ *         schema:
+ *          type: object
+ *          properties:
+ *            email: 
+ *              type: string
+ *            password:
+ *               type: string
+ *   responses:
+ *    '200':
+ *      description: "User Created"
+ *    '500':
+ *      description: Invalid input
+ * 
+ */
 
 router.post('/login', (req, res, next) => {
     Manager.find({email: req.body.email})
@@ -88,6 +115,32 @@ router.post('/login', (req, res, next) => {
         });
     });
 });
+/**
+ * @swagger
+ * /manager/login:
+ *   post:
+ *     summary: manager login.
+ *     tags:
+ *      - manager
+ *     consumes:
+ *       - application/json
+ *     parameters:
+ *       - in: body
+ *         name: body
+ *         required: true
+ *         schema:
+ *          type: object
+ *          properties:
+ *            email:
+ *              type: string
+ *            password:
+ *               type: string 
+ *   responses:
+ *    '200':
+ *      description: "Auth Successful"
+ *    '500':
+ *      description: Auth failed
+ */
 
 router.delete('/:userId', (req, res, next) => {
     Manager.remove({_id: req.params.userId})

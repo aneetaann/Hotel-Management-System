@@ -46,6 +46,34 @@ router.post('/signup', (req, res, next) => {
         }
     });
 });
+/**
+ * @swagger
+ * /admin/signup:
+ *   post:  
+ *     summary: admin signup.
+ *     tags:
+ *      - admin
+ *     consumes:
+ *       - application/json
+ *     parameters:
+ *       - in: body
+ *         name: body
+ *         required: true
+ *         schema:
+ *          type: object
+ *          properties:
+ *            email: 
+ *              type: string
+ *            password:
+ *               type: string
+ *   responses:
+ *    '200':
+ *      description: "User Created"
+ *    '500':
+ *      description: Invalid input
+ * 
+ */
+
 //Admin login and auth
 router.post('/login', (req, res, next) => {
     Admin.find({email: req.body.email})
@@ -89,6 +117,33 @@ router.post('/login', (req, res, next) => {
         });
     });
 });
+/**
+ * @swagger
+ * /admin/login:
+ *   post:
+ *     summary: admin login.
+ *     tags:
+ *      - admin
+ *     consumes:
+ *       - application/json
+ *     parameters:
+ *       - in: body
+ *         name: body
+ *         required: true
+ *         schema:
+ *          type: object
+ *          properties:
+ *            email:
+ *              type: string
+ *            password:
+ *               type: string 
+ *   responses:
+ *    '200':
+ *      description: "Auth Successful"
+ *    '500':
+ *      description: Auth failed
+ */
+
 //Admin delete
 router.delete('/:userId', (req, res, next) => {
     Admin.remove({_id: req.params.userId})

@@ -45,6 +45,33 @@ router.post('/signup', (req, res, next) => {
         }
     });
 });
+/**
+ * @swagger
+ * /receptionist/signup:
+ *   post:  
+ *     summary: receptionist signup.
+ *     tags:
+ *      - receptionist
+ *     consumes:
+ *       - application/json
+ *     parameters:
+ *       - in: body
+ *         name: body
+ *         required: true
+ *         schema:
+ *          type: object
+ *          properties:
+ *            email: 
+ *              type: string
+ *            password:
+ *               type: string
+ *   responses:
+ *    '200':
+ *      description: "User Created"
+ *    '500':
+ *      description: Invalid input
+ * 
+ */
 
 router.post('/login', (req, res, next) => {
     Receptionist.find({email: req.body.email})
@@ -88,6 +115,32 @@ router.post('/login', (req, res, next) => {
         });
     });
 });
+/**
+ * @swagger
+ * /receptionist/login:
+ *   post:
+ *     summary: receptionist login.
+ *     tags:
+ *      - receptionist
+ *     consumes:
+ *       - application/json
+ *     parameters:
+ *       - in: body
+ *         name: body
+ *         required: true
+ *         schema:
+ *          type: object
+ *          properties:
+ *            email:
+ *              type: string
+ *            password:
+ *               type: string 
+ *   responses:
+ *    '200':
+ *      description: "Auth Successful"
+ *    '500':
+ *      description: Auth failed
+ */
 
 router.delete('/:userId', (req, res, next) => {
     Receptionist.remove({_id: req.params.userId})
