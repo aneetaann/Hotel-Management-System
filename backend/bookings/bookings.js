@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv/config");
+const PORT =process.env.PORT;
 
 bookings.use(morgan("dev"));
 bookings.use(express.json());
@@ -515,7 +516,13 @@ bookings.delete("/booking/:bookingId", (req, res) => {
  *                          example: Booking Deleted Successfully
  */
 
-bookings.listen(4500, () => {
+//listening to port
+
+/*bookings.listen(4500, () => {
 	console.log("bookings management server running on localhost:6000");
-});
+});*/
+
+bookings.listen(PORT,"0.0.0.0", ()=>
+  console.log(`bookings microservice at port ${PORT}`)
+);
 

@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv/config");
+const PORT =process.env.PORT;
 
 rooms.use(morgan("dev"));
 rooms.use(express.json());
@@ -397,6 +398,12 @@ rooms.delete("/room/:roomId", (req, res) => {
  *                          example: Room Deleted Successfully
  */
 
+//listening to port
+/*
 rooms.listen(4000, () => {
 	console.log("Room management server running on localhost:4000");
-});
+});*/
+
+rooms.listen(PORT,"0.0.0.0", ()=>
+  console.log(`rooms microservice at port ${PORT}`)
+);

@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const axios = require("axios");
 require("dotenv/config");
+const PORT =process.env.PORT;
 
 //swagger
 const swaggerJSDoc = require('swagger-jsdoc');
@@ -42,9 +43,15 @@ mongoose.connect(
 );
 //mongoose.Promise = global.Promise;
 
-userlogin.listen(3000, ()=>{
+//listening to port
+
+/*userlogin.listen(3000, ()=>{
   console.log("Listening to port 3000");
-});
+});*/
+
+userlogin.listen(PORT,"0.0.0.0", ()=>
+  console.log(`user microservice at port ${PORT}`)
+);
 
 userlogin.use(morgan("dev"));
 userlogin.use(express.urlencoded({ extended: false }));

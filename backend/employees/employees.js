@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv/config");
+const PORT =process.env.PORT;
 
 employees.use(morgan("dev"));
 employees.use(express.json());
@@ -434,6 +435,13 @@ employees.delete("/employee/:employeeId", (req, res) => {
  *                          description: message for successful employee removal or else error message
  *                          example: Employee Deleted Successfully
  */
-employees.listen(5000, () => {
+
+//listening to port
+
+/*employees.listen(5000, () => {
 	console.log("Employee management server running on localhost:5000");
-});
+});*/
+
+employees.listen(PORT,"0.0.0.0", ()=>
+  console.log(`employees microservice at port ${PORT}`)
+);
