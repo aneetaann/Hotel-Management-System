@@ -3,49 +3,49 @@ Microservices:
 	  Databasename:users
 		Models:
 			1.admin:
-  				email: {type: String , require:true, unique:true} ,
-  				password: {type: String , require:true},
+  				email: {type: String , required:true, unique:true} ,
+  				password: {type: String , required:true},
 			2.manager:
-  				email: {type: String , require:true, unique:true} ,
-  				password: {type: String , require:true},
+  				email: {type: String , required:true, unique:true} ,
+  				password: {type: String , required:true},
             3.receptionist:
-  				email: {type: String , require:true, unique:true} ,
-  				password: {type: String , require:true}
+  				email: {type: String , required:true, unique:true} ,
+  				password: {type: String , required:true}
 	2.Rooms:
 	  Databasename:rooms
 		Models:
 			1.rooms:
-				roomnumber: {type: Number , require:true},
-  				floor: {type: Number , require:true},
-  				type: {type: String , require:true},
-  				availability : { type: Array , require: true},
-  				price: {type: Number , require:true}
+				roomnumber: {type: Number , required:true},
+  				floor: {type: Number , required:true},
+  				type: {type: String , required:true},
+  				availability : { type: String , required: true},
+  				price: {type: Number , required:true}
 	3.Employees:
 	  Databasename:employees
 		Models:
 			1.employees:
-				name: {type: String , require:true},
-  				jobprofile: {type: String , require:true},
-  				email: {type: String , require:true},
-  				phone: {type: Number , require:true},
-  				age: {type: String , require:true},
-                gender: {type: String , require:true},
-                address: {type: String , require:true}
+				name: {type: String , required:true},
+  				jobprofile: {type: String , required:true},
+  				email: {type: String , required:true},
+  				phone: {type: Number , required:true},
+  				age: {type: String , required:true},
+                gender: {type: String , required:true},
+                address: {type: String , required:true}
 	4.Bookings:
 	  Databasename:bookings
 		Models:
 			1.bookings:
-				guestname: {type: String , require:true},
-  				email: {type: String , require:true},
-  				phone: {type: Number , require:true},
-  				age: {type: String , require:true},
-                gender: {type: String , require:true},
-                address: {type: String , require:true},
-                room: {type: String , require:true},
-                checkin: {type: Date , require:true},
-                checkout: {type: Date , require:true},
-                paymentmode: {type: String , require:true},
-                totalamount: {type: Number , require:true}
+				guestname: {type: String , required:true},
+  				email: {type: String , required:true},
+  				phone: {type: Number , required:true},
+  				age: {type: String , required:true},
+                gender: {type: String , required:true},
+                address: {type: String , required:true},
+                room: {type: String , required:true},
+                checkin: {type: Date , required:true},
+                checkout: {type: Date , required:true},
+                paymentmode: {type: String , required:true},
+                totalamount: {type: Number , required:true}
 
 
 
