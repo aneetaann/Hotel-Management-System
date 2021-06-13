@@ -1,0 +1,62 @@
+Microservices:
+	1.Users:
+	  Databasename:users
+		Models:
+			1.admin:
+  				email: {type: String , require:true, unique:true} ,
+  				password: {type: String , require:true},
+			2.manager:
+  				email: {type: String , require:true, unique:true} ,
+  				password: {type: String , require:true},
+            3.receptionist:
+  				email: {type: String , require:true, unique:true} ,
+  				password: {type: String , require:true}
+	2.Rooms:
+	  Databasename:rooms
+		Models:
+			1.rooms:
+				roomnumber: {type: Number , require:true},
+  				floor: {type: Number , require:true},
+  				type: {type: String , require:true},
+  				availability : { type: Array , require: true},
+  				price: {type: Number , require:true}
+	3.Employees:
+	  Databasename:employees
+		Models:
+			1.employees:
+				name: {type: String , require:true},
+  				jobprofile: {type: String , require:true},
+  				email: {type: String , require:true},
+  				phone: {type: Number , require:true},
+  				age: {type: String , require:true},
+                gender: {type: String , require:true},
+                address: {type: String , require:true}
+	4.Bookings:
+	  Databasename:bookings
+		Models:
+			1.bookings:
+				guestname: {type: String , require:true},
+  				email: {type: String , require:true},
+  				phone: {type: Number , require:true},
+  				age: {type: String , require:true},
+                gender: {type: String , require:true},
+                address: {type: String , require:true},
+                room: {type: String , require:true},
+                checkin: {type: Date , require:true},
+                checkout: {type: Date , require:true},
+                paymentmode: {type: String , require:true},
+                totalamount: {type: Number , require:true}
+
+
+
+
+
+admin:
+	email:admin@gmail.com
+	password:123456
+manager:
+	email:manager@gmail.com
+	password:123456
+receptionist:
+	email:receptionist@gmail.com
+	password:123456
