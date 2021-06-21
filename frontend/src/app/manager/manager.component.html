@@ -12,7 +12,7 @@
           <a class="mdl-navigation__link" routerLink="/manager/room">Rooms</a>
           <a class="mdl-navigation__link" routerLink="/manager/employee">Employees</a>
           <a class="mdl-navigation__link" *ngIf="!loginservice.getloginFlagVal()" routerLink="/manager">Login</a>
-          <a class="mdl-navigation__link" *ngIf="loginservice.getloginFlagVal()" (click)="logout()">Log Out</a>
+          <a class="mdl-navigation__link" *ngIf="loginservice.getloginFlagVal()" (click)="logout()" routerLink="/">Log Out</a>
         </nav>
       </div>
     </header>
@@ -23,7 +23,7 @@
           <a class="mdl-navigation__link" routerLink="/manager/room">Rooms</a>
           <a class="mdl-navigation__link" routerLink="/manager/employee">Employees</a>
           <a class="mdl-navigation__link" *ngIf="!loginservice.getloginFlagVal()" routerLink="/manager">Login</a>
-          <a class="mdl-navigation__link" *ngIf="loginservice.getloginFlagVal()" (click)="logout()">Log Out</a>
+          <a class="mdl-navigation__link" *ngIf="loginservice.getloginFlagVal()" (click)="logout()" routerLink="/">Log Out</a>
       </nav>
     </div>
     <main class="mdl-layout__content">

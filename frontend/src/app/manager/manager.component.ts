@@ -26,7 +26,7 @@ export class ManagerComponent implements OnInit {
     localStorage.clear()
     this.loginservice.setloginFlagVal(false)
     this.loginFlag = this.loginservice.getloginFlagVal()
-    this.router.navigate(['/manager'])
+    this.router.navigate(['/'])
   }
 
 }

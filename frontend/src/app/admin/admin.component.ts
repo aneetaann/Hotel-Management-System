@@ -27,7 +27,7 @@ export class AdminComponent implements OnInit {
   logout(){
     localStorage.clear()
     this.loginservice.setLoginFlagVal(false)
-    this.router.navigate(['/admin'])
+    this.router.navigate(['/'])
   }
 }
 

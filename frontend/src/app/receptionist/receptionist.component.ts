@@ -23,6 +23,6 @@ export class ReceptionistComponent implements OnInit {
   logout(){
     localStorage.clear()
     this.loginservice.setloginFlagVal(false)
-    this.router.navigate(['/receptionist'])
+    this.router.navigate(['/'])
   }
 }
