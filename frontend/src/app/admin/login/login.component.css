@@ -36,3 +36,6 @@
       cursor: pointer;
       padding: 15px;
   }
+  .mdl-card__title{
+      background-color: #000000ab !important;
+  }

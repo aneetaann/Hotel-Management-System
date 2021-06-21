@@ -1,5 +1,5 @@
 .demo-layout-transparent {
-  background: url('../../assets/images/background.jpg') center / cover;
+  background: url('../../assets/images/background1.jpg') center / cover;
 }
 .demo-layout-transparent .mdl-layout__header,
 .demo-layout-transparent .mdl-layout__drawer-button {
@@ -18,7 +18,7 @@
   bottom: 0;
   right: 0;
   left: 0;
-  backdrop-filter: blur(30px);
+  /*backdrop-filter: blur(30px);*/
 }
 footer{
   z-index: 1;

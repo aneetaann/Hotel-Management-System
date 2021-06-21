@@ -5,7 +5,7 @@
         <a [ngStyle]="currentTab === 2 ? {'background-color':'rgba(0,0,0,0.4)' , 'color':'white'} : {'background-color':'transparent', 'color':'black'}" (click)="changeCurrentTab(2)">Edit Employee</a>
     </div>
     <div *ngIf="currentTab === 0" class="tabs rooms">
-        <h2>View Employees</h2>
+        <!--<h2>View Employees</h2>-->
         <mat-accordion>
           <mat-expansion-panel class="expansionPanel" *ngFor="let room of allEmployees" hideToggle>
             <mat-expansion-panel-header>
@@ -27,10 +27,10 @@
                 </div>
               </div>
               <div class="buttons">
-                <button (click)="deleteRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                <button (click)="deleteRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                   Delete
                 </button>
-                <button (click)="editRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                <button (click)="editRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                   Edit
                 </button>
               </div>
@@ -77,7 +77,7 @@
                           <input matInput formControlName="address">
                         </mat-form-field>
 
-                        <button (click)="addRoom()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                        <button (click)="addRoom()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                         Add Employee
                         </button>
                       </div>
@@ -113,8 +113,8 @@
           </div>
         </div>
         <div class="mdl-card__actions buttons_edit">
-          <button (click)="save()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
-            Save Changes
+          <button (click)="save()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            Save
           </button>
         </div>
     </div>

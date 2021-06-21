@@ -16,7 +16,7 @@
               </mat-form-field>
               <span *ngIf="passwordMissing" class="error">Password is Required</span>
               <span *ngIf="PasswordWrong" class="error">Password is wrong</span>
-              <button (click)="login()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+              <button (click)="login()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                 Login
               </button>
               <span class="helper-line" (click)="openSignUp()">Sign up</span>
@@ -40,7 +40,7 @@
               </mat-form-field>
               <span *ngIf="passwordMissing" class="error">Password is Required</span>
               <span *ngIf="PasswordWrong" class="error">Password is wrong</span>
-              <button (click)="signup()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+              <button (click)="signup()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                 Sign up
               </button>
               <span class="helper-line" (click)="openLogIn()">Already have an account</span>

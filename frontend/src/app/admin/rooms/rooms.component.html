@@ -5,7 +5,7 @@
         <a  [ngStyle]="currentTab === 2 ? {'background-color':'rgba(0,0,0,0.4)' , 'color':'white'} : {'background-color':'transparent', 'color':'black'}" (click)="changeCurrentTab(2)">Edit Rooms</a>
     </div>
     <div *ngIf="currentTab === 0" class="tabs rooms">
-        <h2>View Rooms</h2>
+        <!--<h2>View Rooms</h2>-->
         <mat-accordion>
           <mat-expansion-panel class="expansionPanel" *ngFor="let room of allRooms" hideToggle>
             <mat-expansion-panel-header>
@@ -20,15 +20,15 @@
               <div class="body-container">
                 <div class="column">
                   <p><span class="bold">Type:</span> {{room.type}}</p>
-                  <p><span class="bold">Price </span>{{room.price}}</p>
+                  <p><span class="bold">Price: </span>{{room.price}}</p>
                   <p><span class="bold">Availability: </span>{{room.availability}}</p>
                 </div>
               </div>
               <div class="buttons">
-                <button (click)="deleteRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                <button (click)="deleteRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                   Delete
                 </button>
-                <button (click)="editRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                <button (click)="editRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                   Edit
                 </button>
               </div>
@@ -65,7 +65,7 @@
                           <mat-label>Price</mat-label>
                           <input matInput formControlName="price">
                         </mat-form-field>
-                        <button (click)="addRoom()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                        <button (click)="addRoom()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                         Add Room
                         </button>
                       </div>
@@ -94,8 +94,8 @@
           </div>
         </div>
         <div class="mdl-card__actions buttons_edit">
-          <button (click)="save()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
-            Edit
+          <button (click)="save()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            Save
           </button>
         </div>
     </div>
