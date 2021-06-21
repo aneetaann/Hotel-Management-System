@@ -14,6 +14,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MdashboardComponent } from './mdashboard/mdashboard.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MatInputModule } from '@angular/material/input';
     MployeeComponent,
     MroomsComponent,
     MbookingComponent,
+    MdashboardComponent,
   ],
   imports: [
     CommonModule,

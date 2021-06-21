@@ -13,13 +13,15 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { RdashboardComponent } from './rdashboard/rdashboard.component';
 
 @NgModule({
   declarations: [
     RbookingComponent,
     RroomsComponent,
     ReceptionistComponent,
-    RloginComponent
+    RloginComponent,
+    RdashboardComponent
   ],
   imports: [
     CommonModule,
