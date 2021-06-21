@@ -1,25 +1,28 @@
 .demo-layout-transparent {
-    background: url('../../assets/images/background.jpg') center / cover;
-  }
-  .demo-layout-transparent .mdl-layout__header,
-  .demo-layout-transparent .mdl-layout__drawer-button {
+  background: url('../../assets/images/background.jpg') center / cover;
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
     /* This background is dark, so we set text to white. Use 87% black instead if
        your background is light. */
-    color: white;
-  }
-  .mdl-layout__header-row{
-      background-color: rgba(0,0,0,0.5) !important;
-  }
-  .glass{
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    backdrop-filter: blur(30px);
+  color: white;
 }
-  footer{
-    z-index: 1;
-  }
+.mdl-layout__header-row{
+  background-color: rgba(0,0,0,0.5) !important;
+}
+.glass{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  backdrop-filter: blur(30px);
+}
+footer{
+  z-index: 1;
+}
+.mdl-layout__header-row a:hover{
+  background-color: #00000083;
+}
