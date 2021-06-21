@@ -88,6 +88,9 @@ button{
     font-weight: bold !important;
     color: black !important;
 }
+mat-panel-description{
+    justify-content: flex-end;
+}
 .regular-text{
     font-size: 1.5rem;
     font-weight: initial;
