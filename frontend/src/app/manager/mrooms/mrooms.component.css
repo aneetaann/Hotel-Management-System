@@ -96,7 +96,6 @@ mat-panel-description{
     flex-direction: row;
     justify-content: flex-end;
     padding: 5px;
-
 }
 .buttons_edit{
     display: flex;
@@ -104,4 +103,17 @@ mat-panel-description{
     flex-direction: row;
     justify-content: center;
     padding: 5px;
+}
+.addRooms{
+    width: 100%;
+    margin: 0 auto;
+    padding: 25px; 
+}
+.buttonss{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    padding: 5px;
+
 }

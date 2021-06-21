@@ -3,7 +3,7 @@
         <a>All Rooms</a>
     </div>
     <div *ngIf="currentTab === 0" class="tabs rooms">
-        <h2>View Rooms</h2>
+        <!--<h2>View Rooms</h2>-->
         <mat-accordion>
             <mat-expansion-panel class="expansionPanel" *ngFor="let room of allRooms" hideToggle>
               <mat-expansion-panel-header>
@@ -18,7 +18,7 @@
                 <div class="body-container">
                   <div class="column">
                     <p><span class="bold">Type:</span> {{room.type}}</p>
-                    <p><span class="bold">Price </span>{{room.price}}</p>
+                    <p><span class="bold">Price: </span>{{room.price}}</p>
                     <p><span class="bold">Availability: </span>{{room.availability}}</p>
                   </div>
                 </div>

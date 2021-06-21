@@ -105,3 +105,8 @@ mat-panel-description{
     justify-content: center;
     padding: 5px;
 }
+.addRooms{
+    width: 100%;
+    margin: 0 auto;
+    padding: 25px; 
+}

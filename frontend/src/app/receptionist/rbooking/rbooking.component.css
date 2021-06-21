@@ -56,9 +56,6 @@
     flex-direction: column;
     margin: 0 auto;
 }
-.example-full-width{
-    
-}
 .mdl-textfield{
     width: 100%;
 }
@@ -121,4 +118,9 @@ mat-panel-description{
     justify-content: center;
     padding: 5px;
 
+}
+.addRooms{
+    width: 100%;
+    margin: 0 auto;
+    padding: 25px; 
 }

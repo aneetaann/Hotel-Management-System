@@ -5,7 +5,7 @@
       <a  [ngStyle]="currentTab === 2 ? {'background-color':'rgba(0,0,0,0.4)' , 'color':'white'} : {'background-color':'transparent', 'color':'black'}" (click)="changeCurrentTab(2)">Edit Rooms</a>
     </div>
     <div *ngIf="currentTab === 0" class="tabs rooms">
-        <h2>View Rooms</h2>
+        <!--<h2>View Rooms</h2>-->
         <mat-accordion>
           <mat-expansion-panel class="expansionPanel" *ngFor="let room of allRooms" hideToggle>
             <mat-expansion-panel-header>
@@ -25,10 +25,10 @@
                 </div>
               </div>
               <div class="buttons">
-                <button (click)="deleteRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                <button (click)="deleteRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                   Delete
                 </button>
-                <button (click)="editRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                <button (click)="editRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                   Edit
                 </button>
               </div>
@@ -40,7 +40,7 @@
         <div class="container">
             <div class="demo-card-square mdl-card mdl-shadow--2dp" [formGroup]="loginForm">
                 <div class="mdl-card__title mdl-card--expand">
-                  <h2 class="mdl-card__title-text">Add Room</h2>
+                  <!--<h2 class="mdl-card__title-text">Add Room</h2>-->
                   </div>
                 <div class="mdl-card__supporting-text">
                         <div class="form" [formGroup]="roomForm" >
@@ -64,7 +64,7 @@
                             <mat-label>Price</mat-label>
                             <input matInput formControlName="price">
                           </mat-form-field>
-                          <button (click)="addRoom()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                          <button (click)="addRoom()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                           Add Room
                           </button>
                         </div>
@@ -93,9 +93,9 @@
             </mat-form-field>
           </div>
         </div>
-        <div class="mdl-card__actions">
-          <button (click)="save()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
-            Edit
+        <div class="mdl-card__actions buttonss">
+          <button (click)="save()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            Save
           </button>
         </div>
     </div>

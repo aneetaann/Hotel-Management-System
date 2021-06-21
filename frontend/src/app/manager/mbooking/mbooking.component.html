@@ -5,7 +5,7 @@
         <a [ngStyle]="currentTab === 2 ? {'background-color':'rgba(0,0,0,0.4)' , 'color':'white'} : {'background-color':'transparent', 'color':'black'}" (click)="changeCurrentTab(2)">Edit Bookings</a>
     </div>
     <div *ngIf="currentTab === 0" class="tabs rooms">
-        <h2>View Bookings</h2>
+        <!--<h2>View Bookings</h2>-->
         <mat-accordion>
           <mat-expansion-panel class="expansionPanel" *ngFor="let room of allBookings" hideToggle>
             <mat-expansion-panel-header>
@@ -13,7 +13,7 @@
                 <h3 class="title">Guest Name: {{room.guestname}}</h3>
               </mat-panel-title>
               <mat-panel-description>
-                <h3 class="subtitle">Room no: {{room.room}}</h3>
+                <h3 class="subtitle">Room: {{room.room}}</h3>
               </mat-panel-description>
             </mat-expansion-panel-header>
             <div class="body">
@@ -33,10 +33,10 @@
                 </div>
               </div>
               <div class="buttons">
-                <button (click)="deleteRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                <button (click)="deleteRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                   Delete
                 </button>
-                <button (click)="editRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                <button (click)="editRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                   Edit
                 </button>
               </div>
@@ -47,7 +47,7 @@
 
     <div *ngIf="currentTab === 1" class="tabs addRooms">
         <div class="container">
-          <h2>Fill the form</h2>
+          <!--<h2>Fill the form</h2>-->
             <div class="demo-card-square mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__supporting-text">
                       <div class="form" [formGroup]="roomForm" >
@@ -100,7 +100,7 @@
                             <mat-error *ngIf="roomForm.controls.checkout.hasError('matEndDateInvalid')">Invalid end date</mat-error>
                         </mat-form-field>
 
-                        <button (click)="addRoom()" class="button mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                        <button (click)="addRoom()" class="button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                         Add Booking
                         </button>
                       </div>
@@ -141,8 +141,8 @@
           </div>
         </div>
         <div class="mdl-card__actions buttons">
-          <button (click)="save()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
-            Edit
+          <button (click)="save()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            Save
           </button>
         </div>
     </div>
