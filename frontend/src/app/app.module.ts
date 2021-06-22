@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+//import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { ManagerModule } from './manager/manager.module';
 import { ReceptionistModule} from './receptionist/receptionist.module';

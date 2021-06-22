@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.loginservice.getLoginFlagVal()){
-      this.router.navigate(['/admin/room'])
+      this.router.navigate(['/admin/profile'])
     }
     console.log(this.isLoginFlag)
   }
@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
           case 'Auth Successful':{
             console.log('Succesful');
             alert("Logged in successfully")
-            this.router.navigate(['/admin/room'])
+            this.router.navigate(['/admin/profile'])
             localStorage.setItem('admin',x.token)
             this.loginservice.setLoginFlagVal(true)
             break;

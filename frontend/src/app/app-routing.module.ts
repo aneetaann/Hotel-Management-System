@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { BookingComponent } from './admin/booking/booking.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { EmployeeComponent } from './admin/employee/employee.component';
 import { LoginComponent } from './admin/login/login.component';
 import { RoomsComponent } from './admin/rooms/rooms.component';
@@ -39,6 +40,10 @@ const routes: Routes = [
         component: RoomsComponent
       },
       {
+        path: 'profile',
+        component: DashboardComponent
+      },
+      {
         path: '',
         component: LoginComponent
       }
@@ -51,6 +56,10 @@ const routes: Routes = [
       {
         path:'',
         component: MloginComponent
+      },
+      {
+        path: 'profile',
+        component: DashboardComponent
       },
       {
         path: 'room',
@@ -73,6 +82,10 @@ const routes: Routes = [
       {
         path: '',
         component: RloginComponent
+      },
+      {
+        path: 'profile',
+        component: DashboardComponent
       },
       {
         path: 'room',

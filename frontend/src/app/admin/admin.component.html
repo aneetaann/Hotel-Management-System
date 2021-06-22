@@ -8,6 +8,7 @@
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation -->
         <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" routerLink="/admin/profile">My Profile</a>
           <a class="mdl-navigation__link" routerLink="/admin/booking">Bookings</a>
           <a class="mdl-navigation__link" routerLink="/admin/room">Rooms</a>
           <a class="mdl-navigation__link" routerLink="/admin/employee">Employees</a>
@@ -19,7 +20,8 @@
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">Welcome Admin!</span>
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" routerLink="/admin/booking">Bookings</a>
+          <a class="mdl-navigation__link" routerLink="/admin/profile">My Profile</a>
+          <a class="mdl-navigation__link" routerLink="/admin/booking">Bookings</a>
           <a class="mdl-navigation__link" routerLink="/admin/room">Rooms</a>
           <a class="mdl-navigation__link" routerLink="/admin/employee">Employees</a>
           <a class="mdl-navigation__link" *ngIf="!loginservice.getLoginFlagVal()" routerLink="/admin">Login</a>
