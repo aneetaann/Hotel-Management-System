@@ -40,5 +40,24 @@ router.delete('/:userId', function(req, res, next) {
     return res.status(err.response.status).json(err.response.data);
   })
 });
-
+/*
+router.get('/:userId', function(req, res, next) {
+  // res.render('index', { title: 'Express' });
+  users_api.get(//req.path
+    '/admin/:userId', req.body).then(resp => {
+    res.send(resp.data)
+  }).catch((err)=>{
+    return res.status(err.response.status).json(err.response.data);
+  })
+});
+router.put('/profile/:userId', function(req, res, next) {
+  // res.render('index', { title: 'Express' });
+  users_api.put(//req.path
+    '/admin/profile/'+req.params.userId,req.body).then(resp => {
+    res.send(resp.data)
+  }).catch((err)=>{
+    return res.status(err.response.status).json(err.response.data);
+  })
+});
+*/
 module.exports = router;

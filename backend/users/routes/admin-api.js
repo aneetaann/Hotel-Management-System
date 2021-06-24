@@ -161,4 +161,38 @@ router.delete('/:userId', (req, res, next) => {
     });
 });
 
+//Admin update
+router.put("/profile/:userId", (req, res) => {
+	Admin.findByIdAndUpdate({_id:req.params.userId},req.body)
+	.then(() => {
+		//to display what room details are updated along with updated values
+		Admin.findOne({_id:req.params.id}).then(()=>{
+		res.status(201).send({
+			message:"Profile updated"});
+	})
+		.catch((err) => {
+			res.status(401).send({
+				message:"Profile not updated"});
+		});
+});
+});
+
+//Admin Profile
+router.get("/profile", (req, res) => {
+	Admin.find()
+		.then((user) => {
+			// show admin profile
+			if (user) {
+				res.json(user);
+			} else {
+				res.sendStatus(200);
+			}
+		})
+		.catch((err) => {
+			if (err) {
+				throw err;
+			}
+		});
+});
+
 module.exports = router;
