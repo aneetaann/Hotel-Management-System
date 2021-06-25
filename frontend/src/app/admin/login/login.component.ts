@@ -101,9 +101,9 @@ export class LoginComponent implements OnInit {
       const bodyem = {
         "email": this.signupForm.get('sgEmail')?.value,
         "password": this.signupForm.get('sgPwd')?.value,
-        "Name": this.signupForm.get('name')?.value,
+       /* "Name": this.signupForm.get('name')?.value,
         "username": this.signupForm.get('username')?.value,
-        "Phone": this.signupForm.get('phone')?.value
+        "Phone": this.signupForm.get('phone')?.value*/
       } 
       console.log(bodyem)
       this.httpC.post<any>('http://localhost:3001/admin/signup',bodyem).subscribe((x) => {

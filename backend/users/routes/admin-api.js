@@ -21,7 +21,18 @@ router.post('/signup', (req, res, next) => {
                         return res.status(500).json({
                             error:err
                         });
-                    } else {
+                    }         /*else{
+                                    check("Name", "Please enter your name")
+                                    .not()
+                                    .isEmpty(),
+                                    check("username","Please enter a valid username")
+                                    .not()
+                                    .isEmpty(),
+                                    check("phone","Please enter a valid contact")
+                                    .not()
+                                    .isEmpty()
+                                }*/
+                    else{
                         const user = new Admin({
                             _id: new mongoose.Types.ObjectId(),
                             email: req.body.email,
@@ -41,11 +52,11 @@ router.post('/signup', (req, res, next) => {
                                 error:err
                             });
                         });
+                    }
+                });
             }
         });
-        }
     });
-});
 /**
  * @swagger
  * /admin/signup:
@@ -165,20 +176,20 @@ router.delete('/:userId', (req, res, next) => {
 router.put("/profile/:userId", (req, res) => {
 	Admin.findByIdAndUpdate({_id:req.params.userId},req.body)
 	.then(() => {
-		//to display what room details are updated along with updated values
+		//to display what user details are updated along with updated values
 		Admin.findOne({_id:req.params.id}).then(()=>{
 		res.status(201).send({
 			message:"Profile updated"});
-	})
+	    })
 		.catch((err) => {
-			res.status(401).send({
+			res.status(201).send({
 				message:"Profile not updated"});
 		});
-});
+    });
 });
 
 //Admin Profile
-router.get("/profile", (req, res) => {
+router.get("/profile/:userId", (req, res) => {
 	Admin.find()
 		.then((user) => {
 			// show admin profile
