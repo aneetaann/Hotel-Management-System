@@ -22,16 +22,16 @@ export class DashboardComponent implements OnInit {
   })
   roomForm = new FormGroup({
     name: new FormControl('', Validators.required),
+    email: new FormControl('',Validators.required)
     //username: new FormControl('',Validators.required),
     //password: new FormControl('',Validators.required),
-    email: new FormControl('',Validators.required),
-    phone: new FormControl('',Validators.required)
+    //phone: new FormControl('',Validators.required)
   })
   editForm = new FormGroup({
+    email: new FormControl('',Validators.required),
+    password: new FormControl('',Validators.required)
     //name: new FormControl('', Validators.required),
     //username: new FormControl('',Validators.required),
-    password: new FormControl('',Validators.required),
-    email: new FormControl('',Validators.required),
     //phone: new FormControl('',Validators.required)
   })
   allEmployees:Array<any>=[];
@@ -44,9 +44,6 @@ export class DashboardComponent implements OnInit {
     }
     let response:any[]=[]
     
-    /*viewRoom(someID:any){
-      console.log(someID)
-    }*/
     this.httpc.get<Object>(`http://localhost:3000/admin/profile`).subscribe(
       (res) => {
             console.log(res)
@@ -57,10 +54,10 @@ export class DashboardComponent implements OnInit {
             for (let i=0;i<recs.length;i++){
               this.allEmployees.push({
                 name: response[0][i].name,
+                email: response[0][i].email,
                 //username: response[0][i].username,
                 //password: response[0][i].password,
-                email: response[0][i].email,
-                phone: response[0][i].phone,
+                //phone: response[0][i].phone,
                 updatedOn:response[0][i].updatedOn,
                 id: response[0][i]._id
                });   
@@ -78,10 +75,10 @@ export class DashboardComponent implements OnInit {
       this.currentRoom = x
       console.log(this.currentRoom)
       this.editForm.setValue({
+        'email': this.currentRoom.email,
+        'password': this.currentRoom.password
         //'name': this.currentRoom.name,
         //'username': this.currentRoom.username,
-        'password': this.currentRoom.password,
-        'email': this.currentRoom.email,
         //'phone': this.currentRoom.phone
       })
       this.currentTab = 2
@@ -90,10 +87,10 @@ export class DashboardComponent implements OnInit {
 
   save(){
     let obj = {
+      'email': this.editForm.get('email')?.value,
+      'password': this.editForm.get('password')?.value
       //'name': this.editForm.get('name')?.value,
       //'username': this.editForm.get('username')?.value,
-      'password': this.editForm.get('password')?.value,
-      'email': this.editForm.get('email')?.value,
       //'phone': this.editForm.get('phone')?.value
     }
     this.httpc.put<any>(`http://localhost:3000/admin/profile/${this.currentRoom._id}`,obj).subscribe((x) => {
@@ -111,10 +108,10 @@ export class DashboardComponent implements OnInit {
                   for (let i=0;i<recs.length;i++){
                     this.allEmployees.push({
                       name: response[0][i].name,
+                      email: response[0][i].email,
                       //username: response[0][i].username,
                       //password: response[0][i].password,
-                      email: response[0][i].email,
-                      phone: response[0][i].phone,
+                      //phone: response[0][i].phone,
                       updatedOn:response[0][i].updatedOn,
                       id: response[0][i]._id
                     });   

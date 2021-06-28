@@ -1,1 +1,71 @@
-<p>mdashboard works!</p>
+<div class="container">
+    <div class="options">
+        <a [ngStyle]="currentTab === 0 ? {'background-color':'rgba(0,0,0,0.4)' , 'color':'white'} : {'background-color':'transparent', 'color':'black'}" (click)="changeCurrentTab(0)">My Profile</a>
+        <a [ngStyle]="currentTab === 2 ? {'background-color':'rgba(0,0,0,0.4)' , 'color':'white'} : {'background-color':'transparent', 'color':'black'}" (click)="changeCurrentTab(2)">Edit Profile</a>
+    </div>
+    <div *ngIf="currentTab === 0" class="tabs addRooms">
+      <mat-accordion>
+        <mat-expansion-panel class="expansionPanel" *ngFor="let room of allEmployees" hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h3 class="title">View My Profile</h3>
+            </mat-panel-title>
+            <!--<mat-panel-description>
+              <h3 class="subtitle">Job Profile: {{room.jobprofile}}</h3>
+            </mat-panel-description>-->
+          </mat-expansion-panel-header>
+          <div class="body">
+            <div class="body-container">
+              <div class="column">
+                <p><span class="bold">Name: </span>Rahul Kumar</p>
+                <p><span class="bold">Email: </span>{{room.email}}</p>
+                <!-- <p><span class="bold">username: </span>rahulisadmin</p> -->
+                <!-- <p><span class="bold">Phone: </span>9797979797</p> -->
+              </div>
+            </div>
+            <div class="buttons">
+              <button (click)="editRoom(room.id)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                Edit
+              </button>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>    
+    </div>
+        <div *ngIf="currentTab === 2" class="tabs editRoom">
+          <div class="mdl-card">
+            <div class="mdl-card__supporting-text">
+              <div class="form" [formGroup]="editForm" >
+                <mat-form-field >
+                  <mat-label>Email</mat-label>
+                  <input matInput formControlName="email">
+                </mat-form-field>
+                <mat-form-field >
+                  <mat-label>Password</mat-label>
+                  <input matInput formControlName="password" type="password">
+                </mat-form-field>
+                <!--<mat-form-field >
+                  <mat-label>Name</mat-label>
+                  <input matInput formControlName="name">
+                </mat-form-field>
+                <mat-form-field >
+                  <mat-label>username</mat-label>
+                  <input matInput formControlName="username">
+                </mat-form-field>-->
+                <!--<mat-form-field >
+                  <mat-label>Phone</mat-label>
+                  <input matInput formControlName="phone">
+                </mat-form-field>-->
+              </div>
+            </div>
+          <div class="mdl-card__actions buttons_edit">
+            <button (click)="save()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+              Cancel
+            </button>
+            <button (click)="save()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+              Save Changes
+            </button>
+          </div>
+          </div>
+    </div>
+</div>

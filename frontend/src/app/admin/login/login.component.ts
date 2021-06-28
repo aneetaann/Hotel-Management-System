@@ -23,10 +23,10 @@ export class LoginComponent implements OnInit {
   })
   signupForm = new FormGroup({
     sgEmail: new FormControl('',[Validators.required, Validators.pattern('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+[a-z]{2,4}$')]),
-    sgPwd: new FormControl('',Validators.required),
-    name: new FormControl('',Validators.required),
-    username: new FormControl('',Validators.required),
-    phone: new FormControl('',Validators.required)
+    sgPwd: new FormControl('',Validators.required)
+    //name: new FormControl('',Validators.required),
+    //username: new FormControl('',Validators.required),
+    //phone: new FormControl('',Validators.required)
   })
   constructor(private httpC: HttpClient, private router: Router, private loginservice: LoginService) { }
 
@@ -100,7 +100,7 @@ export class LoginComponent implements OnInit {
     if(this.passwordMissing === false && this.emailIdWrong === false && this.emailIdMissing === false){
       const bodyem = {
         "email": this.signupForm.get('sgEmail')?.value,
-        "password": this.signupForm.get('sgPwd')?.value,
+        "password": this.signupForm.get('sgPwd')?.value
        /* "Name": this.signupForm.get('name')?.value,
         "username": this.signupForm.get('username')?.value,
         "Phone": this.signupForm.get('phone')?.value*/

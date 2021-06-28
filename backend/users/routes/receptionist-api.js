@@ -158,4 +158,56 @@ router.delete('/:userId', (req, res, next) => {
     });
 });
 
+//Receptionist update
+router.put("/profile/:userId", (req, res) => {
+	Receptionist.findByIdAndUpdate({_id:req.params.userId},req.body)
+	.then(() => {
+		//to display what user details are updated along with updated values
+		Receptionist.findOne({_id:req.params.id}).then(()=>{
+		res.status(201).send({
+			message:"Profile updated"});
+	    })
+		.catch((err) => {
+			res.status(201).send({
+				message:"Profile not updated"});
+		});
+    });
+});
+
+//Receptionist Profile
+router.get("/profile", (req, res) => {
+	Receptionist.find()
+		.then((user) => {
+			// show Receptionist profile
+			if (user) {
+				res.json(user);
+			} else {
+				res.sendStatus(200);
+			}
+		})
+		.catch((err) => {
+			if (err) {
+				throw err;
+			}
+		});
+});
+
+//Receptionist Profile by Id
+router.get("/profile/:userId", (req, res) => {
+	Receptionist.findById(req.params.userId)
+		.then((user) => {
+			// show Receptionist
+			if (user) {
+				res.json(user);
+			} else {
+				res.sendStatus(404);
+			}
+		})
+		.catch((err) => {
+			if (err) {
+				throw err;
+			}
+		});
+});
+
 module.exports = router;

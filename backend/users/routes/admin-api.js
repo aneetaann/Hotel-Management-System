@@ -189,7 +189,7 @@ router.put("/profile/:userId", (req, res) => {
 });
 
 //Admin Profile
-router.get("/profile/:userId", (req, res) => {
+router.get("/profile", (req, res) => {
 	Admin.find()
 		.then((user) => {
 			// show admin profile
@@ -197,6 +197,24 @@ router.get("/profile/:userId", (req, res) => {
 				res.json(user);
 			} else {
 				res.sendStatus(200);
+			}
+		})
+		.catch((err) => {
+			if (err) {
+				throw err;
+			}
+		});
+});
+
+//Admin Profile by Id
+router.get("/profile/:userId", (req, res) => {
+	Admin.findById(req.params.userId)
+		.then((user) => {
+			// show admin
+			if (user) {
+				res.json(user);
+			} else {
+				res.sendStatus(404);
 			}
 		})
 		.catch((err) => {

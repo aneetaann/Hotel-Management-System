@@ -18,9 +18,9 @@
             <div class="body-container">
               <div class="column">
                 <p><span class="bold">Name: </span>Rahul Kumar</p>
-                <p><span class="bold">username: </span>rahulisadmin</p>
                 <p><span class="bold">Email: </span>{{room.email}}</p>
-                <p><span class="bold">Phone: </span>9797979797</p>
+                <!-- <p><span class="bold">username: </span>rahulisadmin</p> -->
+                <!-- <p><span class="bold">Phone: </span>9797979797</p> -->
               </div>
             </div>
             <div class="buttons">
@@ -36,6 +36,14 @@
           <div class="mdl-card">
             <div class="mdl-card__supporting-text">
               <div class="form" [formGroup]="editForm" >
+                <mat-form-field >
+                  <mat-label>Email</mat-label>
+                  <input matInput formControlName="email">
+                </mat-form-field>
+                <mat-form-field >
+                  <mat-label>Password</mat-label>
+                  <input matInput formControlName="password" type="password">
+                </mat-form-field>
                 <!--<mat-form-field >
                   <mat-label>Name</mat-label>
                   <input matInput formControlName="name">
@@ -44,14 +52,6 @@
                   <mat-label>username</mat-label>
                   <input matInput formControlName="username">
                 </mat-form-field>-->
-                <mat-form-field >
-                  <mat-label>Password</mat-label>
-                  <input matInput formControlName="password" type="password">
-                </mat-form-field>
-                <mat-form-field >
-                  <mat-label>Email</mat-label>
-                  <input matInput formControlName="email">
-                </mat-form-field>
                 <!--<mat-form-field >
                   <mat-label>Phone</mat-label>
                   <input matInput formControlName="phone">

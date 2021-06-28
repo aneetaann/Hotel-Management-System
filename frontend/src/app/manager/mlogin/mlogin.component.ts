@@ -29,7 +29,7 @@ export class MloginComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.loginservice.getloginFlagVal()){
-      this.router.navigate(['/manager/room'])
+      this.router.navigate(['/manager/profile'])
     }
     console.log(this.isLoginFlag)
   }
@@ -72,7 +72,7 @@ export class MloginComponent implements OnInit {
             localStorage.setItem('manager',x.token)
             this.loginservice.setloginFlagVal(true)
             alert("Logged in successfully")
-            this.router.navigate(['/manager/room'])
+            this.router.navigate(['/manager/profile'])
             break;
           }
           case 'Auth failed':{

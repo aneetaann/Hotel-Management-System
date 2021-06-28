@@ -8,6 +8,7 @@
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation -->
         <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" routerLink="/receptionist/profile">My Profile</a>
           <a class="mdl-navigation__link" routerLink="/receptionist/booking">Bookings</a>
           <a class="mdl-navigation__link" routerLink="/receptionist/room">Rooms</a>
           <a class="mdl-navigation__link" *ngIf="!loginservice.getloginFlagVal()" routerLink="/receptionist">Login</a>
@@ -18,10 +19,11 @@
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">Welcome!</span>
       <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" routerLink="/receptionist/profile">My Profile</a>
         <a class="mdl-navigation__link" routerLink="/receptionist/booking">Bookings</a>
-          <a class="mdl-navigation__link" routerLink="/receptionist/room">Rooms</a>
-          <a class="mdl-navigation__link" *ngIf="!loginservice.getloginFlagVal()" routerLink="/receptionist">Login</a>
-          <a class="mdl-navigation__link" *ngIf="loginservice.getloginFlagVal()" (click)="logout()" routerLink="/">Log Out</a>
+        <a class="mdl-navigation__link" routerLink="/receptionist/room">Rooms</a>
+        <a class="mdl-navigation__link" *ngIf="!loginservice.getloginFlagVal()" routerLink="/receptionist">Login</a>
+        <a class="mdl-navigation__link" *ngIf="loginservice.getloginFlagVal()" (click)="logout()" routerLink="/">Log Out</a>
       </nav>
     </div>
     <main class="mdl-layout__content">

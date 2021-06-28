@@ -28,7 +28,7 @@ export class RloginComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.loginservice.getloginFlagVal()){
-      this.router.navigate(['/receptionist/room'])
+      this.router.navigate(['/receptionist/profile'])
     }
     console.log(this.isLoginFlag)
   }
@@ -69,7 +69,7 @@ export class RloginComponent implements OnInit {
             localStorage.setItem('receptionist',x.token)
             this.loginservice.setloginFlagVal(true)
             alert("Logged in successfully")
-            this.router.navigate(['/receptionist/room'])
+            this.router.navigate(['/receptionist/profile'])
             break;
           }
           case 'Auth failed':{

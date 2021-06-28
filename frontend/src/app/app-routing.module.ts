@@ -10,15 +10,18 @@ import { MainPageComponent } from './main-page/main-page.component';
 
 import { ManagerComponent } from './manager/manager.component';
 import { MbookingComponent } from './manager/mbooking/mbooking.component';
+import { MdashboardComponent } from './manager/mdashboard/mdashboard.component';
 import { MloginComponent } from './manager/mlogin/mlogin.component';
 import { MployeeComponent } from './manager/mployee/mployee.component';
 import { MroomsComponent } from './manager/mrooms/mrooms.component';
 import { RbookingComponent } from './receptionist/rbooking/rbooking.component';
+import { RdashboardComponent } from './receptionist/rdashboard/rdashboard.component';
 import { ReceptionistComponent } from './receptionist/receptionist.component';
 import { RloginComponent } from './receptionist/rlogin/rlogin.component';
 import { RroomsComponent } from './receptionist/rrooms/rrooms.component';
 
 const routes: Routes = [
+
   {
     path: '',
     component: MainPageComponent
@@ -59,7 +62,7 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        component: DashboardComponent
+        component: MdashboardComponent
       },
       {
         path: 'room',
@@ -85,7 +88,7 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        component: DashboardComponent
+        component: RdashboardComponent
       },
       {
         path: 'room',

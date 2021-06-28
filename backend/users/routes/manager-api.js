@@ -158,4 +158,56 @@ router.delete('/:userId', (req, res, next) => {
     });
 });
 
+//Manager update
+router.put("/profile/:userId", (req, res) => {
+	Manager.findByIdAndUpdate({_id:req.params.userId},req.body)
+	.then(() => {
+		//to display what user details are updated along with updated values
+		Manager.findOne({_id:req.params.id}).then(()=>{
+		res.status(201).send({
+			message:"Profile updated"});
+	    })
+		.catch((err) => {
+			res.status(201).send({
+				message:"Profile not updated"});
+		});
+    });
+});
+
+//Manager Profile
+router.get("/profile", (req, res) => {
+	Manager.find()
+		.then((user) => {
+			// show manager profile
+			if (user) {
+				res.json(user);
+			} else {
+				res.sendStatus(200);
+			}
+		})
+		.catch((err) => {
+			if (err) {
+				throw err;
+			}
+		});
+});
+
+//Manager Profile by Id
+router.get("/profile/:userId", (req, res) => {
+	Manager.findById(req.params.userId)
+		.then((user) => {
+			// show manager
+			if (user) {
+				res.json(user);
+			} else {
+				res.sendStatus(404);
+			}
+		})
+		.catch((err) => {
+			if (err) {
+				throw err;
+			}
+		});
+});
+
 module.exports = router;
